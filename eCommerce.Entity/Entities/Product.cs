@@ -1,6 +1,6 @@
-﻿using eCommerce.API.Concretes.Entities.Common;
+﻿using eCommerce.Entity.Entities.Common;
 
-namespace eCommerce.API.Concretes.Entities
+namespace eCommerce.Entity.Entities
 {
     public class Product:BaseEntity
     {
@@ -10,8 +10,8 @@ namespace eCommerce.API.Concretes.Entities
         public float ProductNewPrice { get; set; }
         public string ProductDescription { get; set; }
         public string ProductCode { get; set; }
-        public bool IsStock { get; set; }
-        public bool IsFeatured { get; set; }
+        public bool ProductIsStock { get; set; }
+        public bool ProductIsFeatured { get; set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }

@@ -1,6 +1,6 @@
-﻿using eCommerce.API.Concretes.Entities.Common;
+﻿using eCommerce.Entity.Entities.Common;
 
-namespace eCommerce.API.Concretes.Entities
+namespace eCommerce.Entity.Entities
 {
     public class Category:BaseEntity
     {

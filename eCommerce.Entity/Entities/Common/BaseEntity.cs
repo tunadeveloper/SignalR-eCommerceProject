@@ -1,4 +1,4 @@
-﻿namespace eCommerce.API.Concretes.Entities.Common
+﻿namespace eCommerce.Entity.Entities.Common
 {
     public abstract class BaseEntity
     {
