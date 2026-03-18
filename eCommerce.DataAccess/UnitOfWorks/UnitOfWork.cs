@@ -27,14 +27,7 @@ namespace eCommerce.DataAccess.UnitOfWorks
             Promotion = new Repository<Promotion>(context);
         }
 
-        public async Task<int> SaveAsync()
-        {
-           return await _context.SaveChangesAsync();
-        }
-
-        public async ValueTask DisposeAsync()
-        {
-            await _context.DisposeAsync();
-        }
+        public async Task<int> SaveAsync() => await _context.SaveChangesAsync();
+        public async ValueTask DisposeAsync() => await _context.DisposeAsync();
     }
 }
