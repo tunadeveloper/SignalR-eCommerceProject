@@ -46,18 +46,12 @@ namespace eCommerce.Business.Concretes
 
         public async Task DeleteAsyncBL(Category entity)
         {
-            throw new NotImplementedException();
+            await _uow.Categories.DeleteWithProductsAsync(entity.Id);
         }
 
         public async Task DeleteWithProductsAsync(int categoryId)
         {
-            var category = await _repository.GetByIdAsync(categoryId);
-            var product = await _uow.Products.GetList(x => x.CategoryId == categoryId);
-            foreach (var item in product)
-                await _uow.Products.DeleteAsync(item);
-
-            await _repository.DeleteAsync(category);
-            await _uow.SaveAsync();
+            await _uow.Categories.DeleteWithProductsAsync(categoryId);
         }
 
         public async Task<int> GetCountAsyncBL()
