@@ -12,5 +12,6 @@ namespace eCommerce.Business.Repositories
         Task<List<T>> GetListByFilterAsyncBL(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes);
         Task<List<T>> GetPagedAsyncBL(int page, int pageSize, params Expression<Func<T, object>>[] includes);
         Task<List<T>> GetListNoTrackingAsyncBL();
+        Task<int> GetCountAsyncBL();
     }
 }

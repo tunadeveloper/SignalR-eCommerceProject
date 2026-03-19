@@ -50,5 +50,9 @@ namespace eCommerce.Business.Concretes
             await _repository.DeleteAsync(entity);
             await _uow.SaveAsync();
         }
+        public async Task<int> GetCountAsyncBL()
+        {
+            return await _repository.GetCountAsync();
+        }
     }
 }

@@ -81,5 +81,9 @@ namespace eCommerce.API.Controllers
             await _service.DeleteAsyncBL(values);
             return Ok("Başarıyla Silindi");
         }
+
+        [HttpGet("count")]
+        public async Task<IActionResult> GetCount()
+           => Ok(await _service.GetCountAsyncBL());
     }
 }

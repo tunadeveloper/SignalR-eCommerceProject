@@ -12,5 +12,6 @@ namespace eCommerce.DataAccess.Repositories
         Task<List<T>> GetListByFilterAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes);
         Task<List<T>> GetPagedAsync(int page, int pageSize, params Expression<Func<T, object>>[] includes);
         Task<List<T>> GetListNoTrackingAsync();
+        Task<int> GetCountAsync();
     }
 }

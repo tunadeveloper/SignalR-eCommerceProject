@@ -80,5 +80,10 @@ namespace eCommerce.DataAccess.Repositories
         {
             return await _table.AsNoTracking().ToListAsync();
         }
+
+        public async Task<int> GetCountAsync()
+        {
+            return await _table.CountAsync();
+        }
     }
 }
