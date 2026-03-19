@@ -49,7 +49,7 @@ namespace eCommerce.Business.Concretes
             await _uow.Categories.DeleteWithProductsAsync(entity.Id);
         }
 
-        public async Task DeleteWithProductsAsync(int categoryId)
+        public async Task DeleteWithProductsAsyncBL(int categoryId)
         {
             await _uow.Categories.DeleteWithProductsAsync(categoryId);
         }

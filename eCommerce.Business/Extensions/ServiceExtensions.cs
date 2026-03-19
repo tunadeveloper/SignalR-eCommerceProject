@@ -1,6 +1,7 @@
 using eCommerce.Business.Abstracts;
 using eCommerce.Business.Concretes;
 using eCommerce.Business.Mappings;
+using eCommerce.Business.SignalR;
 using eCommerce.DataAccess.Concretes;
 using eCommerce.DataAccess.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ namespace eCommerce.Business.Extensions
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IPromotionService, PromotionManager>();
             services.AddScoped<IServiceService, ServiceManager>();
+            services.AddScoped<ISignalRHubService, SignalRHubService>();
 
             services.AddAutoMapper(typeof(CategoryProfile).Assembly);
         }

@@ -77,7 +77,7 @@ namespace eCommerce.API.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteWithProductsAsync(id);
+            await _service.DeleteWithProductsAsyncBL(id);
             return Ok("Başarıyla Silindi");
         }
 

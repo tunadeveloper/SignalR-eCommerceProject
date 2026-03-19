@@ -1,4 +1,4 @@
-using eCommerce.API.Hubs;
+using eCommerce.Business.Hubs;
 using eCommerce.Business.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
