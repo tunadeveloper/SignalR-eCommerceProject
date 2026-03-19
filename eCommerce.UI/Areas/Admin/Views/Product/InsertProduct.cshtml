@@ -1,0 +1,112 @@
+@using eCommerce.DTO.DTOs.ProductDTOs
+@model CreateProductDTO
+@{
+    ViewData["Title"] = "Ürün Ekle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+}
+
+<div class="row justify-content-center align-items-center py-4" style="min-height: calc(100vh - 140px);">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <div class="card card-lg shadow-lg border-0">
+            <div class="card-header bg-transparent border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">Ürün Ekle</h5>
+                        <div class="text-secondary">Yeni ürün bilgilerini gir</div>
+                    </div>
+                    <span class="badge bg-primary-subtle text-primary-emphasis">Yeni</span>
+                </div>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <form asp-area="Admin" asp-controller="Product" asp-action="InsertProduct" method="post" class="d-flex flex-column gap-3">
+                    <div>
+                        <label name="ProductName" class="form-label"></label>
+                        <input name="ProductName" class="form-control form-control-lg" placeholder="Ürün adı" required />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label name="ProductImage[0]" class="form-label"></label>
+                        <input name="ProductImage[0]" class="form-control form-control-lg" placeholder="https://..." required />
+                        <span asp-validation-for="ProductImage" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label name="ProductOldPrice" class="form-label"></label>
+                        <input name="ProductOldPrice" class="form-control form-control-lg" placeholder="Eski fiyat" required />
+                        <span asp-validation-for="ProductOldPrice" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label name="ProductNewPrice" class="form-label"></label>
+                        <input name="ProductNewPrice" class="form-control form-control-lg" placeholder="Yeni fiyat" required />
+                        <span asp-validation-for="ProductNewPrice" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label name="ProductDescription" class="form-label"></label>
+                        <input name="ProductDescription" class="form-control form-control-lg" placeholder="Ürün açıklaması" required />
+                        <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label name="ProductCode" class="form-label"></label>
+                        <input name="ProductCode" class="form-control form-control-lg" placeholder="Ürün kodu" required />
+                        <span asp-validation-for="ProductCode" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label name="ProductIsStock" class="form-label"></label>
+                        <select name="ProductIsStock" class="form-select form-select-lg" required>
+                            <option value="">Stok durumu seçiniz</option>
+                            <option value="true">Stokta</option>
+                            <option value="false">Stok Yok</option>
+                        </select>
+                        <span asp-validation-for="ProductIsStock" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label name="ProductIsFeatured" class="form-label"></label>
+                        <select name="ProductIsFeatured" class="form-select form-select-lg" required>
+                            <option value="">Öne çıkarma seçiniz</option>
+                            <option value="true">Öne Çıkan</option>
+                            <option value="false">Normal</option>
+                        </select>
+                        <span asp-validation-for="ProductIsFeatured" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Kategori</label>
+                        <select name="CategoryId" class="form-select form-select-lg" required>
+                            <option value="">Kategori seçiniz</option>
+                            @foreach (var item in ViewBag.Categories)
+                            {
+                                <option value="@item.Id">@item.CategoryName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2 pt-2">
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                        <a href="/Admin/Product/Index" class="btn btn-light">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

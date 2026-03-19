@@ -1,0 +1,70 @@
+@using eCommerce.DTO.DTOs.PromotionDTOs
+@model ResultPromotionDTO
+@{
+    ViewData["Title"] = "Kampanya Güncelle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+}
+
+<div class="row justify-content-center align-items-center py-4" style="min-height: calc(100vh - 140px);">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <div class="card card-lg shadow-lg border-0">
+            <div class="card-header bg-transparent border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">Kampanya Güncelle</h5>
+                        <div class="text-secondary">Kampanya bilgilerini düzenle</div>
+                    </div>
+                    <span class="badge bg-warning-subtle text-warning-emphasis">Düzenle</span>
+                </div>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <form asp-area="Admin" asp-controller="Promotion" asp-action="UpdatePromotion" method="post" class="d-flex flex-column gap-3">
+                    <input asp-for="Id" type="hidden" />
+
+                    <div>
+                        <label asp-for="PromotionTitle" class="form-label"></label>
+                        <input name="PromotionTitle" value="@Model.PromotionTitle" class="form-control form-control-lg" placeholder="Kampanya başlığı" required />
+                        <span asp-validation-for="PromotionTitle" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="PromotionSubtitle" class="form-label"></label>
+                        <input name="PromotionSubtitle" value="@Model.PromotionSubtitle" class="form-control form-control-lg" placeholder="Alt başlık" required />
+                        <span asp-validation-for="PromotionSubtitle" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="PromotionDescription" class="form-label"></label>
+                        <input name="PromotionDescription" value="@Model.PromotionDescription" class="form-control form-control-lg" placeholder="Açıklama" required />
+                        <span asp-validation-for="PromotionDescription" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="PromotionImage" class="form-label"></label>
+                        <input name="PromotionImage" value="@Model.PromotionImage" class="form-control form-control-lg" placeholder="https://..." required />
+                        <span asp-validation-for="PromotionImage" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2 pt-2">
+                        <button type="submit" class="btn btn-info">Güncelle</button>
+                        <a href="/Admin/Promotion/Index" class="btn btn-light">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

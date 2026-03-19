@@ -1,7 +1,7 @@
-@using eCommerce.DTO.DTOs.CategoryDTOs
-@model ResultCategoryDTO
+@using eCommerce.DTO.DTOs.ServiceDTOs
+@model ResultServiceDTO
 @{
-    ViewData["Title"] = "Kategori Güncelle";
+    ViewData["Title"] = "Hizmet Güncelle";
     Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
 }
 
@@ -11,8 +11,8 @@
             <div class="card-header bg-transparent border-bottom py-4">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h5 class="mb-1">Kategori Güncelle</h5>
-                        <div class="text-secondary">Kategori bilgilerini düzenle</div>
+                        <h5 class="mb-1">Hizmet Güncelle</h5>
+                        <div class="text-secondary">Hizmet bilgilerini düzenle</div>
                     </div>
                     <span class="badge bg-warning-subtle text-warning-emphasis">Düzenle</span>
                 </div>
@@ -32,33 +32,30 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 }
-                <form asp-area="Admin" asp-controller="Category" asp-action="UpdateCategory" method="post" class="d-flex flex-column gap-3">
+                <form asp-area="Admin" asp-controller="Service" asp-action="UpdateService" method="post" class="d-flex flex-column gap-3">
                     <input asp-for="Id" type="hidden" />
 
                     <div>
-                        <label asp-for="CategoryName" class="form-label"></label>
-                        <input name="CategoryName" value="@Model.CategoryName" class="form-control form-control-lg" placeholder="Örn: İçecekler" required />
-                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                        <label asp-for="ServiceTitle" class="form-label"></label>
+                        <input name="ServiceTitle" value="@Model.ServiceTitle" class="form-control form-control-lg" placeholder="Hizmet başlığı" required />
+                        <span asp-validation-for="ServiceTitle" class="text-danger"></span>
                     </div>
 
                     <div>
-                        <label asp-for="CategoryImage" class="form-label"></label>
-                        <input name="CategoryImage" value="@Model.CategoryImage" class="form-control form-control-lg" placeholder="https://..." required />
-                        <span asp-validation-for="CategoryImage" class="text-danger"></span>
+                        <label asp-for="ServiceDescription" class="form-label"></label>
+                        <input name="ServiceDescription" value="@Model.ServiceDescription" class="form-control form-control-lg" placeholder="Açıklama" required />
+                        <span asp-validation-for="ServiceDescription" class="text-danger"></span>
                     </div>
 
                     <div>
-                        <label asp-for="CategoryStatus" class="form-label"></label>
-                        <select name="CategoryStatus" class="form-select form-select-lg" required>
-                            <option value="true" @(Model.CategoryStatus ? "selected" : "")>Aktif</option>
-                            <option value="false" @(!Model.CategoryStatus ? "selected" : "")>Pasif</option>
-                        </select>
-                        <span asp-validation-for="CategoryStatus" class="text-danger"></span>
+                        <label asp-for="ServiceIcon" class="form-label"></label>
+                        <input name="ServiceIcon" value="@Model.ServiceIcon" class="form-control form-control-lg" placeholder="İkon (class/url)" required />
+                        <span asp-validation-for="ServiceIcon" class="text-danger"></span>
                     </div>
 
                     <div class="d-flex gap-2 pt-2">
                         <button type="submit" class="btn btn-info">Güncelle</button>
-                        <a href="/Admin/Category/Index" class="btn btn-light">İptal</a>
+                        <a href="/Admin/Service/Index" class="btn btn-light">İptal</a>
                     </div>
                 </form>
             </div>

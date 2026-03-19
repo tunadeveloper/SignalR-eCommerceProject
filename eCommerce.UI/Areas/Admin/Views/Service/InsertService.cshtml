@@ -1,7 +1,7 @@
-@using eCommerce.DTO.DTOs.CategoryDTOs
-@model CreateCategoryDTO
+@using eCommerce.DTO.DTOs.ServiceDTOs
+@model CreateServiceDTO
 @{
-    ViewData["Title"] = "Kategori Ekle";
+    ViewData["Title"] = "Hizmet Ekle";
     Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
 }
 
@@ -11,8 +11,8 @@
             <div class="card-header bg-transparent border-bottom py-4">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h5 class="mb-1">Kategori Ekle</h5>
-                        <div class="text-secondary">Yeni kategori bilgilerini gir</div>
+                        <h5 class="mb-1">Hizmet Ekle</h5>
+                        <div class="text-secondary">Yeni hizmet bilgilerini gir</div>
                     </div>
                     <span class="badge bg-primary-subtle text-primary-emphasis">Yeni</span>
                 </div>
@@ -32,32 +32,28 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 }
-                <form asp-area="Admin" asp-controller="Category" asp-action="InsertCategory" method="post" class="d-flex flex-column gap-3">
+                <form asp-area="Admin" asp-controller="Service" asp-action="InsertService" method="post" class="d-flex flex-column gap-3">
                     <div>
-                        <label name="CategoryName" class="form-label"></label>
-                        <input name="CategoryName" class="form-control form-control-lg" placeholder="Örn: İçecekler" required />
-                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                        <label name="ServiceTitle" class="form-label"></label>
+                        <input name="ServiceTitle" class="form-control form-control-lg" placeholder="Hizmet başlığı" required />
+                        <span asp-validation-for="ServiceTitle" class="text-danger"></span>
                     </div>
 
                     <div>
-                        <label name="CategoryImage" class="form-label"></label>
-                        <input name="CategoryImage" class="form-control form-control-lg" placeholder="https://..." required />
-                        <span asp-validation-for="CategoryImage" class="text-danger"></span>
+                        <label name="ServiceDescription" class="form-label"></label>
+                        <input name="ServiceDescription" class="form-control form-control-lg" placeholder="Açıklama" required />
+                        <span asp-validation-for="ServiceDescription" class="text-danger"></span>
                     </div>
 
                     <div>
-                        <label name="CategoryStatus" class="form-label"></label>
-                        <select name="CategoryStatus" class="form-select form-select-lg" required>
-                            <option value="">Durum seçiniz</option>
-                            <option value="true">Aktif</option>
-                            <option value="false">Pasif</option>
-                        </select>
-                        <span asp-validation-for="CategoryStatus" class="text-danger"></span>
+                        <label name="ServiceIcon" class="form-label"></label>
+                        <input name="ServiceIcon" class="form-control form-control-lg" placeholder="İkon (class/url)" required />
+                        <span asp-validation-for="ServiceIcon" class="text-danger"></span>
                     </div>
 
                     <div class="d-flex gap-2 pt-2">
                         <button type="submit" class="btn btn-success">Kaydet</button>
-                        <a href="/Admin/Category/Index" class="btn btn-light">İptal</a>
+                        <a href="/Admin/Service/Index" class="btn btn-light">İptal</a>
                     </div>
                 </form>
             </div>

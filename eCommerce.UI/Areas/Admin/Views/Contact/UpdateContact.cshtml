@@ -1,0 +1,76 @@
+@using eCommerce.DTO.DTOs.ContactDTOs
+@model ResultContactDTO
+@{
+    ViewData["Title"] = "İletişim Güncelle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+}
+
+<div class="row justify-content-center align-items-center py-4" style="min-height: calc(100vh - 140px);">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <div class="card card-lg shadow-lg border-0">
+            <div class="card-header bg-transparent border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">İletişim Güncelle</h5>
+                        <div class="text-secondary">İletişim bilgilerini düzenle</div>
+                    </div>
+                    <span class="badge bg-warning-subtle text-warning-emphasis">Düzenle</span>
+                </div>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <form asp-area="Admin" asp-controller="Contact" asp-action="UpdateContact" method="post" class="d-flex flex-column gap-3">
+                    <input asp-for="Id" type="hidden" />
+
+                    <div>
+                        <label asp-for="ContactEmail" class="form-label"></label>
+                        <input name="ContactEmail" value="@Model.ContactEmail" class="form-control form-control-lg" placeholder="E-Posta" required />
+                        <span asp-validation-for="ContactEmail" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="ContactPhoneNumber" class="form-label"></label>
+                        <input name="ContactPhoneNumber" value="@Model.ContactPhoneNumber" class="form-control form-control-lg" placeholder="Telefon" required />
+                        <span asp-validation-for="ContactPhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="ContactAddress" class="form-label"></label>
+                        <input name="ContactAddress" value="@Model.ContactAddress" class="form-control form-control-lg" placeholder="Adres" required />
+                        <span asp-validation-for="ContactAddress" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="ContactWorkTime" class="form-label"></label>
+                        <input name="ContactWorkTime" value="@Model.ContactWorkTime" class="form-control form-control-lg" placeholder="Çalışma Saatleri" required />
+                        <span asp-validation-for="ContactWorkTime" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="ContactMap" class="form-label"></label>
+                        <input name="ContactMap" value="@Model.ContactMap" class="form-control form-control-lg" placeholder="Harita (iframe/link)" required />
+                        <span asp-validation-for="ContactMap" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2 pt-2">
+                        <button type="submit" class="btn btn-info">Güncelle</button>
+                        <a href="/Admin/Contact/Index" class="btn btn-light">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

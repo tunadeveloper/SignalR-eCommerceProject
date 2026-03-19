@@ -1,5 +1,5 @@
-@using eCommerce.DTO.DTOs.CategoryDTOs
-@model List<ResultCategoryDTO>
+@using eCommerce.DTO.DTOs.ProductDTOs
+@model List<ResultProductDTO>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
@@ -11,10 +11,10 @@
         <div class="card-header bg-transparent border-bottom py-4">
             <div class="d-flex align-items-center justify-content-between w-100">
                 <div>
-                    <h5 class="mb-1">Kategori Listesi</h5>
+                    <h5 class="mb-1">Ürün Listesi</h5>
                     <div class="text-secondary small">Toplam: @Model?.Count</div>
                 </div>
-                <a href="/Admin/Category/InsertCategory/" class="btn btn-success btn-sm">Yeni Kategori</a>
+                <a href="/Admin/Product/InsertProduct/" class="btn btn-success btn-sm">Yeni Ürün</a>
             </div>
         </div>
         <div class="px-4 pt-4">
@@ -38,8 +38,9 @@
                 <thead class="table-light">
                     <tr>
                         <th class="text-uppercase small text-secondary">#</th>
+                        <th class="text-uppercase small text-secondary">Ürün</th>
                         <th class="text-uppercase small text-secondary">Kategori</th>
-                        <th class="text-uppercase small text-secondary">Ürün Sayısı</th>
+                        <th class="text-uppercase small text-secondary">Fiyat</th>
                         <th class="text-uppercase small text-secondary">Durum</th>
                         <th class="text-uppercase small text-secondary text-end">İşlem</th>
                     </tr>
@@ -53,33 +54,34 @@
                             <td class="fw-semibold">@count</td>
                             <td>
                                 <div class="d-flex align-items-center gap-3">
-                                    <img src="@item.CategoryImage" alt="category" class="rounded-3 border" width="44" height="44" style="object-fit: cover;" />
+                                    <img src="@(item.ProductImage != null && item.ProductImage.Count > 0 ? item.ProductImage[0] : "")" alt="product" class="rounded-3 border" width="44" height="44" style="object-fit: cover;" />
                                     <div class="d-flex flex-column">
-                                        <span class="fw-semibold text-truncate">@item.CategoryName</span>
+                                        <span class="fw-semibold text-truncate">@item.ProductName</span>
                                         <span class="text-secondary small">#@item.Id</span>
                                     </div>
                                 </div>
                             </td>
-                            <td>454</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.ProductNewPrice</td>
                             <td>
-                                @if (item.CategoryStatus)
+                                @if (item.ProductIsStock)
                                 {
-                                    <span class="badge text-success-emphasis bg-success-subtle">Aktif</span>
+                                    <span class="badge text-success-emphasis bg-success-subtle">Stokta</span>
                                 }
                                 else
                                 {
-                                    <span class="badge text-secondary-emphasis bg-secondary-subtle">Pasif</span>
+                                    <span class="badge text-danger-emphasis bg-danger-subtle">Stok Yok</span>
                                 }
                             </td>
                             <td class="text-end">
                                 <div class="d-inline-flex gap-2">
-                                    <a href="/Admin/Category/UpdateCategory/@item.Id" class="btn btn-info btn-sm">Düzenle</a>
-                                    <a href="/Admin/Category/DeleteCategory/@item.Id" class="btn btn-danger btn-sm">Sil</a>
+                                    <a href="/Admin/Product/UpdateProduct/@item.Id" class="btn btn-info btn-sm">Düzenle</a>
+                                    <a href="/Admin/Product/DeleteProduct/@item.Id" class="btn btn-danger btn-sm">Sil</a>
                                 </div>
                             </td>
                         </tr>
                     }
-                  
+
                 </tbody>
             </table>
         </div>

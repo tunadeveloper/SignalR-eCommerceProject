@@ -1,7 +1,7 @@
-@using eCommerce.DTO.DTOs.CategoryDTOs
-@model ResultCategoryDTO
+@using eCommerce.DTO.DTOs.MessageDTOs
+@model ResultMessageDTO
 @{
-    ViewData["Title"] = "Kategori Güncelle";
+    ViewData["Title"] = "Mesaj Güncelle";
     Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
 }
 
@@ -11,8 +11,8 @@
             <div class="card-header bg-transparent border-bottom py-4">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h5 class="mb-1">Kategori Güncelle</h5>
-                        <div class="text-secondary">Kategori bilgilerini düzenle</div>
+                        <h5 class="mb-1">Mesaj Güncelle</h5>
+                        <div class="text-secondary">Mesaj bilgilerini düzenle</div>
                     </div>
                     <span class="badge bg-warning-subtle text-warning-emphasis">Düzenle</span>
                 </div>
@@ -32,33 +32,30 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 }
-                <form asp-area="Admin" asp-controller="Category" asp-action="UpdateCategory" method="post" class="d-flex flex-column gap-3">
+                <form asp-area="Admin" asp-controller="Message" asp-action="UpdateMessage" method="post" class="d-flex flex-column gap-3">
                     <input asp-for="Id" type="hidden" />
 
                     <div>
-                        <label asp-for="CategoryName" class="form-label"></label>
-                        <input name="CategoryName" value="@Model.CategoryName" class="form-control form-control-lg" placeholder="Örn: İçecekler" required />
-                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                        <label asp-for="MessageNameSurname" class="form-label"></label>
+                        <input name="MessageNameSurname" value="@Model.MessageNameSurname" class="form-control form-control-lg" placeholder="Ad Soyad" required />
+                        <span asp-validation-for="MessageNameSurname" class="text-danger"></span>
                     </div>
 
                     <div>
-                        <label asp-for="CategoryImage" class="form-label"></label>
-                        <input name="CategoryImage" value="@Model.CategoryImage" class="form-control form-control-lg" placeholder="https://..." required />
-                        <span asp-validation-for="CategoryImage" class="text-danger"></span>
+                        <label asp-for="MessageSubject" class="form-label"></label>
+                        <input name="MessageSubject" value="@Model.MessageSubject" class="form-control form-control-lg" placeholder="Konu" required />
+                        <span asp-validation-for="MessageSubject" class="text-danger"></span>
                     </div>
 
                     <div>
-                        <label asp-for="CategoryStatus" class="form-label"></label>
-                        <select name="CategoryStatus" class="form-select form-select-lg" required>
-                            <option value="true" @(Model.CategoryStatus ? "selected" : "")>Aktif</option>
-                            <option value="false" @(!Model.CategoryStatus ? "selected" : "")>Pasif</option>
-                        </select>
-                        <span asp-validation-for="CategoryStatus" class="text-danger"></span>
+                        <label asp-for="MessageContent" class="form-label"></label>
+                        <input name="MessageContent" value="@Model.MessageContent" class="form-control form-control-lg" placeholder="Mesaj" required />
+                        <span asp-validation-for="MessageContent" class="text-danger"></span>
                     </div>
 
                     <div class="d-flex gap-2 pt-2">
                         <button type="submit" class="btn btn-info">Güncelle</button>
-                        <a href="/Admin/Category/Index" class="btn btn-light">İptal</a>
+                        <a href="/Admin/Message/Index" class="btn btn-light">İptal</a>
                     </div>
                 </form>
             </div>
