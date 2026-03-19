@@ -26,4 +26,8 @@
     <ProjectReference Include="..\eCommerce.DTO\eCommerce.DTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Hubs\" />
+  </ItemGroup>
+
 </Project>

@@ -40,6 +40,9 @@
 
         <ul class="list-unstyled d-flex align-items-center mb-0 gap-2">
             <li>
+                <strong>SignalR: </strong>  <span id="signalRStatus" class="ms-2 badge rounded-pill bg-secondary">Bağlanıyor...</span>
+            </li>
+            <li>
                 <div class="dropdown">
                     <button class="btn btn-ghost btn-icon rounded-circle d-flex align-items-center justify-content-center" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Temayı değiştir (otomatik)">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -473,3 +476,44 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.7/signalr.min.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+    .withUrl("https://localhost:7224/signalrhub")
+    .withAutomaticReconnect()
+    .build();
+
+    const statusElement = document.getElementById("signalRStatus");
+
+    connection.start()
+    .then(() => {
+    statusElement.textContent = "Bağlandı";
+    statusElement.classList.remove("bg-secondary", "bg-danger");
+    statusElement.classList.add("bg-success");
+    })
+    .catch(err => {
+    console.error(err.toString());
+    statusElement.textContent = "Bağlanamadı";
+    statusElement.classList.remove("bg-secondary", "bg-success");
+    statusElement.classList.add("bg-danger");
+    });
+
+    connection.onclose(() => {
+    statusElement.textContent = "Bağlantı Koptu";
+    statusElement.classList.remove("bg-success", "bg-secondary");
+    statusElement.classList.add("bg-danger");
+    });
+
+    connection.onreconnecting(() => {
+    statusElement.textContent = "Yeniden bağlanıyor...";
+    statusElement.classList.remove("bg-success", "bg-danger");
+    statusElement.classList.add("bg-secondary");
+    });
+
+    connection.onreconnected(() => {
+    statusElement.textContent = "Bağlandı";
+    statusElement.classList.remove("bg-secondary", "bg-danger");
+    statusElement.classList.add("bg-success");
+    });
+</script>

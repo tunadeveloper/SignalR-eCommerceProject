@@ -2,7 +2,7 @@
 
 namespace eCommerce.UI.Areas.Admin.Controllers
 {
-    public class SignalRController : Controller
+    public class StatisticsController : Controller
     {
         public IActionResult Index()
         {
