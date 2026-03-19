@@ -1,0 +1,304 @@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+}
+
+<div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3 mb-4">
+    <div>
+        <h4 class="mb-1">İstatistikler</h4>
+        <div class="text-secondary">Genel performans özeti</div>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <select class="form-select form-select-sm" style="width: 180px;">
+            <option>Son 7 Gün</option>
+            <option>Son 30 Gün</option>
+            <option>Son 90 Gün</option>
+        </select>
+        <button class="btn btn-primary btn-sm">Rapor Al</button>
+    </div>
+</div>
+
+@* Burada tutabileceğin veriler: Toplam Ciro, Sipariş Sayısı, Aktif Müşteri, Sepet Ortalaması *@
+<div class="row g-3">
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-secondary small">Toplam Ciro</div>
+                        <div class="fs-4 fw-bold mt-1">₺ 1.245.900</div>
+                        <div class="small text-success mt-1">+12.4% <span class="text-secondary">son 30 gün</span></div>
+                    </div>
+                    <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:44px;height:44px;background: rgba(13,110,253,.12); color:#0d6efd;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 3v18" />
+                            <path d="M16 7h-5a3 3 0 0 0 0 6h2a3 3 0 0 1 0 6h-5" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 6px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 68%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-secondary small">Sipariş</div>
+                        <div class="fs-4 fw-bold mt-1">3.482</div>
+                        <div class="small text-success mt-1">+8.1% <span class="text-secondary">son 30 gün</span></div>
+                    </div>
+                    <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:44px;height:44px;background: rgba(25,135,84,.12); color:#198754;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
+                            <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 54%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-secondary small">Aktif Müşteri</div>
+                        <div class="fs-4 fw-bold mt-1">1.128</div>
+                        <div class="small text-danger mt-1">-2.3% <span class="text-secondary">son 30 gün</span></div>
+                    </div>
+                    <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:44px;height:44px;background: rgba(255,193,7,.18); color:#b58100;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 6px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 42%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-secondary small">Sepet Ortalaması</div>
+                        <div class="fs-4 fw-bold mt-1">₺ 358</div>
+                        <div class="small text-success mt-1">+4.9% <span class="text-secondary">son 30 gün</span></div>
+                    </div>
+                    <div class="rounded-3 d-flex align-items-center justify-content-center" style="width:44px;height:44px;background: rgba(13,202,240,.14); color:#0dcaf0;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 19h16" />
+                            <path d="M6 16l6 -12l6 12" />
+                            <path d="M8 12h8" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 6px;">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 61%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-1">
+    <div class="col-12 col-xl-8">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-transparent border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h6 class="mb-1">Gelir Trendleri</h6>
+                        <div class="text-secondary small">Günlük/haftalık gelir grafiği</div>
+                    </div>
+                    <span class="badge bg-success-subtle text-success-emphasis">Canlı</span>
+                </div>
+            </div>
+            @* Burada tutabileceğin veriler: Günlük gelir, sipariş adedi, dönüşüm oranı, iade oranı *@
+            <div class="card-body">
+                <div class="rounded-4 border position-relative overflow-hidden" style="height: 280px; background: linear-gradient(135deg, rgba(13,110,253,.10), rgba(25,135,84,.08));">
+                    <div class="position-absolute top-0 start-0 p-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-primary-subtle text-primary-emphasis">₺</span>
+                            <span class="text-secondary small">Grafik alanı (Chart.js / ApexChart)</span>
+                        </div>
+                    </div>
+                    <div class="position-absolute bottom-0 start-0 end-0 p-3">
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-secondary border">Satış</span>
+                            <span class="badge bg-light text-secondary border">Sipariş</span>
+                            <span class="badge bg-light text-secondary border">Ziyaret</span>
+                            <span class="badge bg-light text-secondary border">Dönüşüm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <div class="col-12 col-md-4">
+                        <div class="p-3 rounded-4 border">
+                            <div class="text-secondary small">Bugün</div>
+                            <div class="fw-bold mt-1">₺ 42.180</div>
+                            <div class="small text-success">+3.2%</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="p-3 rounded-4 border">
+                            <div class="text-secondary small">Bu Hafta</div>
+                            <div class="fw-bold mt-1">₺ 286.450</div>
+                            <div class="small text-success">+6.7%</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="p-3 rounded-4 border">
+                            <div class="text-secondary small">Bu Ay</div>
+                            <div class="fw-bold mt-1">₺ 1.245.900</div>
+                            <div class="small text-success">+12.4%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-xl-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-header bg-transparent border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h6 class="mb-1">En Çok Satan Kategoriler</h6>
+                        <div class="text-secondary small">Pay dağılımı</div>
+                    </div>
+                    <button class="btn btn-light btn-sm">Detay</button>
+                </div>
+            </div>
+            @* Burada tutabileceğin veriler: Kategori adı, satış adedi, ciro, ürün sayısı *@
+            <div class="card-body">
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="rounded-circle" style="width:10px;height:10px;background:#0d6efd;"></span>
+                            <span class="fw-semibold">İçecekler</span>
+                        </div>
+                        <span class="text-secondary">38%</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-primary" style="width:38%"></div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="rounded-circle" style="width:10px;height:10px;background:#198754;"></span>
+                            <span class="fw-semibold">Atıştırmalık</span>
+                        </div>
+                        <span class="text-secondary">24%</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-success" style="width:24%"></div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="rounded-circle" style="width:10px;height:10px;background:#0dcaf0;"></span>
+                            <span class="fw-semibold">Temizlik</span>
+                        </div>
+                        <span class="text-secondary">19%</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-info" style="width:19%"></div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="rounded-circle" style="width:10px;height:10px;background:#ffc107;"></span>
+                            <span class="fw-semibold">Kişisel Bakım</span>
+                        </div>
+                        <span class="text-secondary">13%</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-warning" style="width:13%"></div>
+                    </div>
+                </div>
+                <div class="mt-4 p-3 rounded-4 border">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="text-secondary small">Toplam Satış</div>
+                        <div class="fw-bold">₺ 1.245.900</div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mt-2">
+                        <div class="text-secondary small">Toplam Sipariş</div>
+                        <div class="fw-bold">3.482</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0 mt-3">
+    <div class="card-header bg-transparent border-bottom py-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <div>
+                <h6 class="mb-1">Son İşlemler</h6>
+                <div class="text-secondary small">En son gerçekleşen sipariş/hareket kayıtları</div>
+            </div>
+            <button class="btn btn-light btn-sm">Tümünü Gör</button>
+        </div>
+    </div>
+    @* Burada tutabileceğin veriler: Sipariş no, müşteri, tutar, durum, tarih, ödeme yöntemi *@
+    <div class="table-responsive">
+        <table class="table align-middle mb-0 table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th class="text-uppercase small text-secondary">Sipariş</th>
+                    <th class="text-uppercase small text-secondary">Müşteri</th>
+                    <th class="text-uppercase small text-secondary">Tutar</th>
+                    <th class="text-uppercase small text-secondary">Durum</th>
+                    <th class="text-uppercase small text-secondary text-end">Tarih</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="fw-semibold">#10482</td>
+                    <td>Ahmet Y.</td>
+                    <td>₺ 1.249</td>
+                    <td><span class="badge bg-success-subtle text-success-emphasis">Tamamlandı</span></td>
+                    <td class="text-end text-secondary">Bugün 12:14</td>
+                </tr>
+                <tr>
+                    <td class="fw-semibold">#10481</td>
+                    <td>Elif K.</td>
+                    <td>₺ 379</td>
+                    <td><span class="badge bg-warning-subtle text-warning-emphasis">Hazırlanıyor</span></td>
+                    <td class="text-end text-secondary">Bugün 11:02</td>
+                </tr>
+                <tr>
+                    <td class="fw-semibold">#10480</td>
+                    <td>Mehmet S.</td>
+                    <td>₺ 2.050</td>
+                    <td><span class="badge bg-info-subtle text-info-emphasis">Kargoda</span></td>
+                    <td class="text-end text-secondary">Dün 19:48</td>
+                </tr>
+                <tr>
+                    <td class="fw-semibold">#10479</td>
+                    <td>Zeynep T.</td>
+                    <td>₺ 129</td>
+                    <td><span class="badge bg-danger-subtle text-danger-emphasis">İptal</span></td>
+                    <td class="text-end text-secondary">Dün 16:33</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
