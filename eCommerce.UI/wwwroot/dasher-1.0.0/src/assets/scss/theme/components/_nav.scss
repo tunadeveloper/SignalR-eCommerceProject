@@ -1,0 +1,166 @@
+// Nav
+
+// Nav line bottom tab (.nav-lb-tab)
+.nav-lb-tab {
+  border-bottom: 1px solid var(--#{$prefix}gray-300);
+  @media (max-width: 1600px) {
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .nav-item {
+    margin-right: 2rem;
+    .nav-link {
+      border-bottom: 1px solid transparent;
+      border-radius: 0px;
+      padding: 16px 0px;
+      margin-bottom: -1px;
+      font-weight: 500;
+      color: var(--#{$prefix}gray-600);
+      white-space: nowrap;
+      &.active {
+        background-color: transparent;
+        border-bottom: 1px solid var(--#{$prefix}primary);
+        color: var(--#{$prefix}primary);
+      }
+      &:hover {
+        background-color: transparent;
+        border-bottom: 1px solid var(--#{$prefix}primary);
+        color: var(--#{$prefix}primary);
+      }
+    }
+  }
+}
+
+// Bottom line nav
+
+.nav-line-bottom {
+  border-bottom: 1px solid var(--#{$prefix}gray-300);
+  @media (max-width: 576px) {
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .nav-item {
+    .nav-link {
+      color: var(--#{$prefix}gray-600);
+      border-radius: 0px;
+      margin-bottom: -1px;
+      padding: 1.2rem;
+      font-weight: 500;
+      white-space: nowrap;
+      @media (max-width: 576px) {
+        padding: 0.8rem;
+      }
+      &.active {
+        color: var(--#{$prefix}primary);
+        background-color: transparent;
+        border-bottom: 1px solid var(--#{$prefix}primary);
+        @media (max-width: 576px) {
+          padding: 0.747rem;
+        }
+      }
+      &:hover {
+        color: var(--#{$prefix}primary);
+        background-color: transparent;
+        border-bottom: 1px solid var(--#{$prefix}primary);
+      }
+      .badge {
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+.nav-custom-pill {
+  background-color: var(--#{$prefix}gray-200);
+  border-radius: 0.5rem;
+  padding: 0.35rem;
+
+  .nav-link {
+    border-radius: 0.5rem;
+    color: var(--#{$prefix}gray-500);
+    padding: 4px 11px;
+    display: flex;
+    align-items: center;
+    transition: color 200ms ease 0s;
+    font-size: 0.75rem;
+    font-weight: 600;
+    &.active {
+      color: var(--#{$prefix}dark);
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 0.0625rem 0.1875rem, rgba(0, 0, 0, 0.1) 0px 0.0625rem 0.125rem;
+      transition: transform 200ms ease 0s, width 100ms ease 0s;
+      background-color: var(--#{$prefix}white);
+    }
+  }
+}
+
+.nav-pills-white {
+  .nav-link {
+    background-color: transparent;
+    color: var(--#{$prefix}gray-800);
+    border-radius: 0.75rem;
+    margin-right: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 1rem 1.5rem;
+
+    &.active {
+      background-color: var(--#{$prefix}white);
+      color: var(--#{$prefix}gray-800);
+      box-shadow: var(--#{$prefix}box-shadow-sm);
+    }
+  }
+}
+
+.side-nav {
+  .nav {
+    max-height: calc(100vh - 4.5rem);
+    display: flex;
+    flex-direction: column !important;
+    flex-wrap: nowrap;
+
+    .nav-ul {
+      display: flex;
+      flex-direction: column;
+      padding-left: 3px;
+      position: relative;
+      margin-bottom: 10px;
+
+      &::before {
+        top: 0px;
+        left: 3px;
+        bottom: 0px;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 1px;
+        content: '';
+        background-color: var(--#{$prefix}gray-300);
+        position: absolute;
+        height: calc(100% - 12px);
+      }
+      .nav-item {
+        .nav-link {
+          padding: 2px 16px;
+          border-left: 1px solid transparent;
+          margin-top: 6px;
+          position: relative;
+          color: var(--#{$prefix}gray-500);
+          &:hover {
+            color: var(--#{$prefix}gray-800);
+            border-left: 1px solid var(--#{$prefix}gray-800);
+          }
+          &.active {
+            color: var(--#{$prefix}primary);
+            border-left: 1px solid var(--#{$prefix}primary);
+          }
+        }
+      }
+    }
+  }
+}

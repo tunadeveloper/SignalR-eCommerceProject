@@ -1,0 +1,82 @@
+// Background utilities
+
+// Background gradient color
+
+.bg-gradient-success {
+  background: linear-gradient(320deg, rgba(211, 252, 210, 0.7) 0%, var(--#{$prefix}white) 70%);
+}
+
+.bg-gradient-info {
+  background: linear-gradient(320deg, rgb(201, 253, 245, 0.7) 0%, var(--#{$prefix}white) 70%);
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(320deg, rgb(255, 245, 204, 0.7) 0%, var(--#{$prefix}white) 70%);
+}
+
+.bg-gradient-danger {
+  background: linear-gradient(320deg, rgb(255, 233, 213, 0.7) 0%, var(--#{$prefix}white) 70%);
+}
+
+.bg-gradient-mixed {
+  background: linear-gradient(94.82deg, var(--#{$prefix}danger-lighter) 1.11%, var(--#{$prefix}primary-lighter) 99.11%);
+}
+
+.color-facebook {
+  color: $facebook;
+}
+
+.color-twitter {
+  color: $twitter;
+}
+
+.color-github {
+  color: $github;
+}
+
+.color-google {
+  color: $google;
+}
+
+.color-linkedin {
+  color: $linkedin;
+}
+
+.color-youtube {
+  color: $youtube;
+}
+.color-slack {
+  color: $slack;
+}
+
+.bg-facebook {
+  background-color: $facebook;
+}
+
+.bg-twitter {
+  background-color: $twitter;
+}
+
+.bg-github {
+  background-color: $github;
+}
+
+.bg-google {
+  background-color: $google;
+}
+
+.bg-linkedin {
+  background-color: $linkedin;
+}
+
+.bg-youtube {
+  background-color: $youtube;
+}
+
+.bg-slack {
+  background-color: $slack;
+}
+
+.bg-instagram {
+  background-color: $instagram;
+}

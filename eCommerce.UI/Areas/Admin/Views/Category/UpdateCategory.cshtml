@@ -1,0 +1,53 @@
+@using eCommerce.DTO.DTOs.CategoryDTOs
+@model ResultCategoryDTO
+@{
+    ViewData["Title"] = "Kategori Güncelle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+}
+
+<div class="row justify-content-center align-items-center py-4" style="min-height: calc(100vh - 140px);">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <div class="card card-lg shadow-lg border-0">
+            <div class="card-header bg-transparent border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">Kategori Güncelle</h5>
+                        <div class="text-secondary">Kategori bilgilerini düzenle</div>
+                    </div>
+                    <span class="badge bg-warning-subtle text-warning-emphasis">Düzenle</span>
+                </div>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+                <form asp-area="Admin" asp-controller="Category" asp-action="UpdateCategory" method="post" class="d-flex flex-column gap-3">
+                    <input asp-for="Id" type="hidden" />
+
+                    <div>
+                        <label asp-for="CategoryName" class="form-label"></label>
+                        <input name="CategoryName" value="@Model.CategoryName" class="form-control form-control-lg" placeholder="Örn: İçecekler" required />
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="CategoryImage" class="form-label"></label>
+                        <input name="CategoryImage" value="@Model.CategoryImage" class="form-control form-control-lg" placeholder="https://..." required />
+                        <span asp-validation-for="CategoryImage" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="CategoryStatus" class="form-label"></label>
+                        <select name="CategoryStatus" class="form-select form-select-lg" required>
+                            <option value="true" @(Model.CategoryStatus ? "selected" : "")>Aktif</option>
+                            <option value="false" @(!Model.CategoryStatus ? "selected" : "")>Pasif</option>
+                        </select>
+                        <span asp-validation-for="CategoryStatus" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2 pt-2">
+                        <button type="submit" class="btn btn-info">Güncelle</button>
+                        <a href="/Admin/Category/Index" class="btn btn-light">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

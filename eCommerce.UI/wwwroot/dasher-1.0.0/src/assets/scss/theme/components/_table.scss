@@ -1,0 +1,68 @@
+// Table
+table tr:last-child td {
+  border-bottom-width: 0px;
+}
+
+// Table centered
+.table-centered td,
+.table-centered th {
+  vertical-align: middle !important;
+}
+
+.table {
+  & thead {
+    background-color: var(--#{$prefix}gray-100);
+  }
+  & th {
+    border: 0px;
+    color: var(--#{$prefix}gray-600);
+  }
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: dashed;
+  border-width: 0;
+}
+
+.table-responsive {
+  /* width */
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: var(--#{$prefix}gray-100);
+    border-radius: $border-radius-xl;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: var(--#{$prefix}gray-300);
+    border-radius: $border-radius-xl;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--#{$prefix}gray-300);
+  }
+}
+
+.table-checkbox {
+  tbody {
+    tr:has(.form-check-input:checked) {
+      background-color: rgba(var(--#{$prefix}primary-rgb), $alpha: 0.15);
+    }
+  }
+}
+
+.table-hover > tbody > tr:hover:has(.form-check-input:checked) > * {
+  --ds-table-color-state: rgba(var(--#{$prefix}primary-rgb), $alpha: 1);
+  --ds-table-bg-state: rgba(var(--#{$prefix}primary-rgb), $alpha: 0.75); // Slightly darker on hover
+}

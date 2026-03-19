@@ -1,0 +1,251 @@
+// Button
+// btn icon
+
+.btn-icon {
+  position: relative;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 0.92969rem;
+  font-weight: 400;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+}
+
+.btn-icon.btn-xs {
+  font-size: 0.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.btn-icon.btn-sm {
+  font-size: 0.875rem;
+  width: 2.1875rem;
+  height: 2.1875rem;
+}
+
+.btn-icon.btn-lg {
+  font-size: 1rem;
+  width: 3.36875rem;
+  height: 3.36875rem;
+}
+
+// password
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  & + span .passwordToggler {
+    right: 37px !important;
+    top: 33% !important;
+  }
+}
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  & + span .passwordToggler {
+    right: 40px;
+  }
+}
+
+.passwordToggler {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--#{$prefix}gray-800);
+  line-height: 1;
+}
+
+.was-validated .form-check-input:valid ~ .form-check-label,
+.was-validated .form-check-input.is-valid ~ .form-check-label {
+  color: inherit;
+}
+
+.was-validated :valid:not(:required):not(.btn),
+.is-valid:not(:required):not(.btn) {
+  border-color: var(--#{$prefix}gray-300) !important;
+  background-image: none;
+}
+
+// btn ghost
+
+.btn-ghost {
+  --ds-btn-font-weight: 600;
+  --ds-btn-color: var(--#{$prefix}gray-500);
+  --ds-btn-bg: transparent;
+  --ds-btn-border-color: transparent;
+  --ds-btn-border-radius: 0.5rem;
+  --ds-btn-hover-color: var(--#{$prefix}gray-600);
+  --ds-btn-hover-bg: var(--#{$prefix}gray-300);
+  --ds-btn-hover-border-color: var(--#{$prefix}gray-300);
+  --ds-btn-focus-shadow-rgb: var(--bd-gray-300-rgb);
+  --ds-btn-active-color: var(--#{$prefix}btn-hover-color);
+  --ds-btn-active-bg: var(--#{$prefix}gray-300);
+  --ds-btn-active-border-color: var(--#{$prefix}gray-300);
+}
+
+// Subtle button variant mixin
+@mixin button-subtle-variant(
+  $color,
+  $background: $btn-soft-bg-opacity,
+  $hover-bg: rgba($color, $btn-soft-bg-opacity + 0.1),
+  $active-bg: rgba($color, $btn-soft-bg-opacity + 0.2),
+  $text-color: $color,
+  $disabled-color: $color
+) {
+  --#{$prefix}btn-color: #{$text-color};
+  --#{$prefix}btn-bg: #{$background};
+  --#{$prefix}btn-border-color: transparent;
+  --#{$prefix}btn-hover-color: #{$text-color};
+  --#{$prefix}btn-hover-bg: #{$hover-bg};
+  --#{$prefix}btn-hover-border-color: transparent;
+  --#{$prefix}btn-focus-shadow-rgb: #{to-rgb($color)};
+  --#{$prefix}btn-active-color: #{$text-color};
+  --#{$prefix}btn-active-bg: #{$active-bg};
+  --#{$prefix}btn-active-border-color: transparent;
+  --#{$prefix}btn-active-shadow: #{$btn-active-box-shadow};
+  --#{$prefix}btn-disabled-color: #{$disabled-color};
+  --#{$prefix}btn-disabled-bg: #{$hover-bg};
+  --#{$prefix}btn-disabled-border-color: transparent;
+  --#{$prefix}gradient: none;
+}
+
+// Loop to generate subtle button variants for each theme color
+@each $color, $value in $theme-colors {
+  .btn-subtle-#{$color} {
+    @include button-subtle-variant($value, rgba($value, $btn-soft-bg-opacity + 0.1), rgba($value, $btn-soft-bg-opacity + 0.2));
+  }
+}
+
+// btn white
+
+.btn-white {
+  --#{$prefix}btn-color: #{$gray-700};
+  --#{$prefix}btn-bg: #{$white};
+  --#{$prefix}btn-border-color: #{$gray-300};
+  --#{$prefix}btn-hover-color: #{$gray-800};
+  --#{$prefix}btn-hover-bg: #{$gray-200};
+  --#{$prefix}btn-hover-border-color: #{$gray-300};
+  --#{$prefix}btn-active-color: #{$gray-800};
+  --#{$prefix}btn-active-bg: #{$gray-200};
+  --#{$prefix}btn-active-border-color: #{$gray-300};
+  --#{$prefix}btn-disabled-color: #{$gray-800};
+  --#{$prefix}btn-disabled-bg: #{$gray-300};
+  --#{$prefix}btn-disabled-border-color: #{$gray-300};
+}
+
+// btn focus none
+.btn.btn-focus-none {
+  &:active {
+    border-color: transparent;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+// checkbox icon button for ecommerce
+
+.icon-checked {
+  opacity: 0;
+}
+.btn-check:checked + .btn,
+.btn-check:active + .btn,
+.btn:active,
+.btn.active,
+.btn.show {
+  .icon-checked {
+    opacity: 1;
+  }
+}
+
+// Social buttons
+
+@each $brand, $value in $social-buttons {
+  .btn-#{$brand} {
+    background-color: var(--#{$prefix}gray-300);
+    color: var(--#{$prefix}gray-600);
+    border: 1px solid var(--#{$prefix}gray-300);
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: $value !important;
+      background-color: $value !important;
+      color: $white !important;
+    }
+  }
+}
+
+// Dots animation
+
+@keyframes dot-keyframes {
+  0% {
+    opacity: 0.4;
+    transform: scale(1, 1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2, 1.2);
+  }
+
+  100% {
+    opacity: 0.4;
+    transform: scale(1, 1);
+  }
+}
+
+.loading-dots {
+  width: 100%;
+
+  &--dot {
+    animation: dot-keyframes 1.5s infinite ease-in-out;
+    background-color: var(--#{$prefix}primary);
+    border-radius: 10px;
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+
+    &:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 1s;
+    }
+  }
+}
+
+/* Default state */
+.btn-star.icon-tabler-star {
+  fill: none;
+  stroke: var(--#{$prefix}gray-500);
+}
+
+/* Checked state */
+.btn-check:checked + label .btn-star.icon-tabler-star {
+  fill: var(--#{$prefix}warning); /* Warning color */
+  stroke: var(--#{$prefix}warning); /* Warning color */
+}
+
+// custom tooltip
+.customTooltip {
+  position: absolute;
+  background-color: var(--#{$prefix}primary-bg-subtle);
+  color: var(--#{$prefix}primary-text-emphasis);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.5s ease;
+}

@@ -1,0 +1,47 @@
+// navbar dark
+.navbar-dark {
+  transition: all 0.3s ease-in-out;
+
+  .navbar-brand {
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: var(--#{$prefix}gray-300) !important;
+
+      @media (max-width: 990px) {
+        color: var(--#{$prefix}gray-500) !important;
+      }
+    }
+    .dropdown {
+      .dropdown-toggle {
+        &:after {
+          color: var(--#{$prefix}gray-300);
+          @media (max-width: 990px) {
+            color: var(--#{$prefix}gray-500) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// navbar light
+.navbar-light {
+  border-bottom: 1px dashed var(--#{$prefix}gray-100);
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        color: var(--#{$prefix}gray-500);
+        font-weight: 500;
+
+        &:hover,
+        &.active {
+          color: var(--#{$prefix}gray-800);
+        }
+      }
+    }
+  }
+}

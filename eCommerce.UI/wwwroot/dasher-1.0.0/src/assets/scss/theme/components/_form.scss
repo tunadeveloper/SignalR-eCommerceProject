@@ -1,0 +1,87 @@
+// Form
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-focus-none {
+  &.form-control {
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+  &.form-select {
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+
+// input spinner
+
+.input-spinner {
+  .button-minus,
+  .button-plus {
+    height: 2rem;
+    width: 1.8rem;
+    border-color: var(--#{$prefix}gray-200);
+    background-color: transparent;
+    &:hover {
+      background-color: var(--#{$prefix}gray-200);
+      border-color: var(--#{$prefix}gray-200);
+    }
+  }
+  .form-input {
+    width: 2rem !important;
+
+    height: 100%;
+    min-height: 2rem;
+    text-align: center;
+    border: 1px solid var(--#{$prefix}gray-200);
+    background: 0 0;
+  }
+}
+
+// file upload
+.file-upload {
+  position: relative;
+  overflow: hidden;
+
+  input.file-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    height: 100%;
+  }
+}
+
+// input pass-code
+.inputpass-code {
+  height: 64px;
+  width: 64px;
+  font-size: 32px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--#{$prefix}gray-800);
+}
+
+::placeholder {
+  color: var(--#{$prefix}gray-500);
+  opacity: 1; /* Firefox */
+}
+
+.form-check-input[type='checkbox'][data-indeterminate='true'] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+  background-color: var(--#{$prefix}primary);
+  border-color: var(--#{$prefix}primary);
+}

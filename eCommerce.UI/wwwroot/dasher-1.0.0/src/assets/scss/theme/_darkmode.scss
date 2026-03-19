@@ -1,0 +1,140 @@
+// dark mode
+
+[data-bs-theme='dark'] {
+  $grays: (
+    '100': $gray-900,
+    '200': $gray-800,
+    '300': $gray-700,
+    '400': $gray-600,
+    '500': $gray-500,
+    '600': $gray-400,
+    '700': $gray-300,
+    '800': $gray-200,
+    '900': $gray-100,
+  );
+
+  --#{$prefix}primary-lighter: #{$primary-700};
+  --#{$prefix}danger-lighter: #{$danger-700};
+
+  $theme-colors: () !default;
+  $theme-colors: (
+    'light': $gray-800,
+    'dark': $white,
+    'white': $gray-800,
+  );
+  .navbar-glass {
+    backdrop-filter: blur(6px);
+    background-color: rgb(20 26 33 / 60%);
+  }
+
+  .dropdown-menu {
+    box-shadow: 0 0 2px 0 rgba(0 0 0 / 0.2), 0 12px 24px -4px rgba(0 0 0 / 0.12);
+  }
+
+  --#{$prefix}navbar-bg: $gray-800;
+
+  --#{$prefix}box-shadow-xs: 0 1px 2px 0 rgba(0 0 0 / 0.16) !important;
+  --#{$prefix}box-shadow: 0 4px 8px 0 rgba(0 0 0 / 0.16) !important;
+  --#{$prefix}box-shadow-sm: 0 8px 16px 0 rgba(0 0 0 / 0.16) !important;
+  --#{$prefix}box-shadow-lg: 0 12px 24px -4px rgba(0 0 0 / 0.16) !important;
+  --#{$prefix}box-shadow-xl: 0 0 2px 0 rgba(0 0 0 / 0.2), 0 12px 24px -4px rgba(0 0 0 / 0.12) !important;
+
+  // Button
+  @each $color, $value in $theme-colors {
+    .btn-#{$color} {
+      @include button-variant($value, $value);
+    }
+  }
+  @each $color, $value in $theme-colors {
+    .btn-outline-#{$color} {
+      @include button-outline-variant($value);
+    }
+  }
+
+  // // Prefix for :root CSS variables
+  @each $color, $value in $grays {
+    --#{$prefix}gray-#{$color}: #{$value};
+  }
+
+  // // Color
+  @each $color, $value in $theme-colors {
+    --#{$prefix}#{$color}: #{$value};
+  }
+
+  .text-inherit {
+    &:hover {
+      color: var(--#{$prefix}primary) !important;
+    }
+  }
+
+  .dark-mode-block {
+    display: block !important;
+  }
+  .dark-mode-none {
+    display: none;
+  }
+  // theme color
+
+  @each $color, $value in $theme-colors {
+    $color-rgb: to-rgb($value);
+    .text-bg-#{$color} {
+      color: color-contrast($value) if($enable-important-utilities, !important, null);
+      background-color: rgba($color-rgb, var(--#{$prefix}bg-opacity, 1)) if($enable-important-utilities, !important, null);
+    }
+    .bg-#{$color} {
+      color: color-contrast($value) if($enable-important-utilities, !important, null);
+      background-color: rgba($color-rgb, var(--#{$prefix}bg-opacity, 1)) if($enable-important-utilities, !important, null);
+    }
+  }
+  // Gray Color
+  @each $color, $value in $grays {
+    .bg-gray-#{$color} {
+      background-color: $value !important;
+    }
+    .text-gray-#{$color} {
+      color: $value !important;
+    }
+  }
+
+  --#{$prefix}nav-pills-link-active-color: #{$gray-600};
+  --#{$prefix}nav-pills-link-active-bg: #{$gray-800};
+  --#{$prefix}box-shadow-sm: 0px 3px 1px -2px rgba(0 0 0 / 0.2), 0px 2px 2px 0px rgba(0 0 0 / 0.14), 0px 1px 5px 0px rgba(0 0 0 / 0.12);
+
+  .btn-light {
+    --#{$prefix}btn-color: #{$gray-400};
+    --#{$prefix}btn-bg: #{$gray-700};
+    --#{$prefix}btn-border-color: #{$gray-700};
+    --#{$prefix}btn-hover-color: #{$gray-300};
+    --#{$prefix}btn-hover-bg: #{$gray-600};
+    --#{$prefix}btn-hover-border-color: #{$gray-600};
+    --#{$prefix}btn-active-color: #{$gray-300};
+    --#{$prefix}btn-active-bg: #{$gray-600};
+    --#{$prefix}btn-active-border-color: #{$gray-600};
+    --#{$prefix}btn-disabled-color: #{$gray-700};
+    --#{$prefix}btn-disabled-bg: #{$gray-100};
+    --#{$prefix}btn-disabled-border-color: #{$gray-100};
+  }
+
+  // btn white
+
+  .btn-white {
+    --#{$prefix}btn-color: #{$white};
+    --#{$prefix}btn-bg: transparent;
+    --#{$prefix}btn-border-color: #{$gray-700};
+    --#{$prefix}btn-hover-color: #{$white};
+    --#{$prefix}btn-hover-bg: #{$gray-700};
+    --#{$prefix}btn-hover-border-color: #{$gray-700};
+    --#{$prefix}btn-active-color: #{$white};
+    --#{$prefix}btn-active-bg: #{$gray-700};
+    --#{$prefix}btn-active-border-color: #{$gray-700};
+    --#{$prefix}btn-disabled-color: #{$gray-800};
+    --#{$prefix}btn-disabled-bg: #{$gray-400};
+    --#{$prefix}btn-disabled-border-color: #{$gray-400};
+  }
+
+  .table-light {
+    --#{$prefix}table-color: var(--#{$prefix}body-color);
+    --#{$prefix}table-bg: #28323d;
+    --#{$prefix}table-border-color: #28323d;
+  }
+}

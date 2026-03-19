@@ -8,10 +8,21 @@ namespace eCommerce.DataAccess.Repositories
     {
         private readonly ECommerceContext _context;
         private readonly DbSet<T> _table;
+
         public Repository(ECommerceContext context)
         {
             _context = context;
             _table = _context.Set<T>();
+        }
+
+        public async Task InsertAsync(T entity)
+        {
+            await _table.AddAsync(entity);
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            _table.Update(entity);
         }
 
         public async Task DeleteAsync(T entity)
@@ -19,45 +30,55 @@ namespace eCommerce.DataAccess.Repositories
             _table.Remove(entity);
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includes)
         {
-            return await _table.FindAsync(id);
+            IQueryable<T> query = _table;
+
+            foreach (var include in includes)
+                query = query.Include(include);
+
+            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
         }
 
-        public async Task<List<T>> GetList()
+        public async Task<List<T>> GetList(params Expression<Func<T, object>>[] includes)
         {
-            return await _table.ToListAsync();
+            IQueryable<T> query = _table;
+
+            foreach (var include in includes)
+                query = query.Include(include);
+
+            return await query.ToListAsync();
         }
 
-        public async Task<List<T>> GetListByFilterAsync(Expression<Func<T, bool>> filter)
+        public async Task<List<T>> GetListByFilterAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
         {
-           return await _table.Where(filter).ToListAsync();
+            IQueryable<T> query = _table.Where(filter);
+
+            foreach (var include in includes)
+                query = query.Include(include);
+
+            return await query.ToListAsync();
         }
 
-        public async Task<List<T>> GetListNoTrackingAsync()
-        {
-            return await _table.AsNoTracking().ToListAsync();
-        }
-
-        public async Task<List<T>> GetPagedAsync(int page, int pageSize)
+        public async Task<List<T>> GetPagedAsync(int page, int pageSize, params Expression<Func<T, object>>[] includes)
         {
             if (page < 1) page = 1;
-            if(pageSize < 1) pageSize = 10;
+            if (pageSize < 1) pageSize = 10;
 
-            return await _table
+            IQueryable<T> query = _table;
+
+            foreach (var include in includes)
+                query = query.Include(include);
+
+            return await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
         }
 
-        public async Task InsertAsync(T entity)
+        public async Task<List<T>> GetListNoTrackingAsync()
         {
-            _table.AddAsync(entity);
-        }
-
-        public async Task UpdateAsync(T entity)
-        {
-            _table.Update(entity);
+            return await _table.AsNoTracking().ToListAsync();
         }
     }
 }

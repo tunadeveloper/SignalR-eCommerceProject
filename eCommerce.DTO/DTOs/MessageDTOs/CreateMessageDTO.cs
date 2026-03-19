@@ -1,0 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace eCommerce.DTO.DTOs.MessageDTOs
+{
+    public class CreateMessageDTO
+    {
+        public string MessageNameSurname { get; set; }
+        public string MessageSubject { get; set; }
+        public string MessageContent { get; set; }
+    }
+}

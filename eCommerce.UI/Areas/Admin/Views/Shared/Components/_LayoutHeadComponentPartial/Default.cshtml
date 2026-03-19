@@ -1,0 +1,30 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Codescandy" name="author">
+    <title>@ViewData["Title"]</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="~/dasher-1.0.0/src/assets/images/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/dasher-1.0.0/src/assets/images/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/dasher-1.0.0/src/assets/images/favicon/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="~/dasher-1.0.0/src/assets/images/favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <script>
+        localStorage.setItem("theme", "light");
+        document.documentElement.setAttribute("data-bs-theme", "light");
+    </script>
+    <script src="~/dasher-1.0.0/src/assets/js/vendors/color-modes.js"></script>
+    <script>
+            if (localStorage.getItem('sidebarExpanded') === 'false') {
+                document.documentElement.classList.add('collapsed');
+                document.documentElement.classList.remove('expanded');
+            } else {
+                document.documentElement.classList.remove('collapsed');
+                document.documentElement.classList.add('expanded');
+            }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="~/dasher-1.0.0/src/assets/css/theme.css" />
+</head>

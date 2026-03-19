@@ -1,12 +1,12 @@
-using eCommerce.DataAccess.Concretes;
-using Microsoft.EntityFrameworkCore;
+using eCommerce.Business.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ECommerceContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddBusinessServices(builder.Configuration);
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

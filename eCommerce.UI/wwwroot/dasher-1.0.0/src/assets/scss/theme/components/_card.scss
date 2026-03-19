@@ -1,0 +1,26 @@
+// card
+
+// card lift
+
+.card-lift {
+  transition: 0.2s;
+  -moz-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  &:hover {
+    -webkit-box-shadow: 0px 5px 12px rgb(0 0 0 / 12%);
+    box-shadow: 0px 5px 12px rgb(0 0 0 / 12%);
+
+    transition: 0.2s;
+    -moz-transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+  }
+}
+
+// card lg
+.card-lg {
+  box-shadow: var(--#{$prefix}box-shadow-xl);
+  border-radius: $border-radius-xl;
+  border: 0px;
+}

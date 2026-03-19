@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    @@include("../../partials/head/head-meta.html")
+    <title>Maintenance | Dasher - Responsive Bootstrap 5 Admin Dashboard</title>
+    @@include("../../partials/head/head-links.html")
+  </head>
+
+  <body>
+    <main>
+      <section class="container justify-content-center align-items-center d-flex flex-column vh-100">
+        <div class="row text-center">
+          <div class="col-12">
+            <div>
+              <h1>Site is Under Maintenance</h1>
+              <p>We're making the system more awesome. We'll be back shortly.</p>
+            </div>
+            <div>
+              <img src="../../assets/images/svg/maintenance.svg" alt="Image" style="width: 500px" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="offset-xl-1 col-xl-10 col-12">
+            <div class="row">
+              <div class="col-md-4 col-12">
+                <div class="mb-4 mb-lg-0">
+                  <div class="d-flex flex-column gap-4">
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-device-desktop text-primary"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" />
+                        <path d="M7 20h10" />
+                        <path d="M9 16v4" />
+                        <path d="M15 16v4" />
+                      </svg>
+                    </div>
+
+                    <div>
+                      <h3 class="fs-5">Why is the site down?</h3>
+                      <p class="mb-0">it can be due to an error with your DNS settings, hosting provider, or web applications.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="mb-4 mb-lg-0">
+                  <div class="d-flex flex-column gap-4">
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-clock text-primary"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                        <path d="M12 7v5l3 3" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="fs-5">What is downtime?</h3>
+                      <p class="mb-0">A machine is not operating or being productive due to required maintenance work.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <div class="mb-4 mb-lg-0">
+                  <div class="d-flex flex-column gap-4">
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon icon-tabler icon-tabler-lifebuoy text-primary"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                        <path d="M15 15l3.35 3.35" />
+                        <path d="M9 15l-3.35 3.35" />
+                        <path d="M5.65 5.65l3.35 3.35" />
+                        <path d="M18.35 5.65l-3.35 3.35" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="fs-5">Do you need support?</h3>
+                      <p>In emergrancy, our team will help you. Just drop a message to the</p>
+                      <a href="#!" class="text-inherit">Dasher@example.com</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="position-absolute end-0 bottom-0 m-4">
+        <div class="dropdown">
+          <button class="btn btn-light btn-icon rounded-circle d-flex align-items-center" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+            <i class="bi theme-icon-active lh-1"><i class="bi theme-icon bi-sun-fill"></i></i>
+            <span class="visually-hidden bs-theme-text">Toggle theme</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow">
+            <li>
+              <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="light" aria-pressed="true">
+                <i class="ti theme-icon ti ti-sun"></i>
+                <span class="ms-2">Light</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                <i class="ti theme-icon ti-moon-stars"></i>
+                <span class="ms-2">Dark</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="false">
+                <i class="ti theme-icon ti-circle-half-2"></i>
+                <span class="ms-2">Auto</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    @@include("../../partials/scripts.html")
+  </body>
+</html>

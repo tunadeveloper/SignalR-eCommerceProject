@@ -1,0 +1,88 @@
+// Extend from bootstrap
+// Progress bar
+
+// progress bar for step
+
+.progress-container {
+  width: 100%;
+  margin: 2em auto;
+}
+.progress-steps {
+  counter-reset: step;
+  li {
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    position: relative;
+    text-align: center;
+    color: var(--#{$prefix}body-color);
+    &:before {
+      width: 14px;
+      height: 14px;
+      content: '';
+      counter-increment: step;
+      line-height: 2.5em;
+      display: block;
+      text-align: center;
+      margin: 0 auto 0.7em auto;
+      border-radius: 50%;
+      background-color: var(--#{$prefix}gray-300);
+      border: 2px solid var(--#{$prefix}light);
+    }
+    &:after {
+      width: 100%;
+      height: 3px;
+      content: '';
+      position: absolute;
+      background-color: var(--#{$prefix}gray-300);
+      top: 0.4em;
+      left: -50%;
+      z-index: -1;
+    }
+    &:first-child {
+      &:after {
+        content: none;
+      }
+    }
+    &.active {
+      color: var(--#{$prefix}primary);
+      &:before {
+        border-color: var(--#{$prefix}light);
+        background-color: var(--#{$prefix}primary);
+      }
+      & + li {
+        &:after {
+          background-color: var(--#{$prefix}primary);
+        }
+      }
+    }
+  }
+}
+
+//timeline
+.timeline {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  z-index: 2;
+  .timeline-event {
+    margin-bottom: 10px;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      left: calc(2.5rem / 2);
+      bottom: calc(-1 * 1.5rem);
+      width: 1px;
+      background-color: var(--#{$prefix}gray-300);
+    }
+    .timeline-event-icon {
+      position: absolute;
+      top: 14px;
+    }
+    .timeline-event-card {
+      margin-left: 4rem;
+    }
+  }
+}

@@ -46,7 +46,7 @@ namespace eCommerce.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("eCommerce.Entity.Entities.Contact", b =>
@@ -82,7 +82,7 @@ namespace eCommerce.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("eCommerce.Entity.Entities.Message", b =>
@@ -110,7 +110,7 @@ namespace eCommerce.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("eCommerce.Entity.Entities.Product", b =>
@@ -159,7 +159,7 @@ namespace eCommerce.DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("eCommerce.Entity.Entities.Promotion", b =>
@@ -191,7 +191,7 @@ namespace eCommerce.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Promotions");
+                    b.ToTable("Promotions", (string)null);
                 });
 
             modelBuilder.Entity("eCommerce.Entity.Entities.Service", b =>
@@ -219,7 +219,7 @@ namespace eCommerce.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("eCommerce.Entity.Entities.Product", b =>

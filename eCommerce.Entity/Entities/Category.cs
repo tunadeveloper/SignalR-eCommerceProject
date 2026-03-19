@@ -7,5 +7,7 @@ namespace eCommerce.Entity.Entities
         public string CategoryName { get; set; }
         public string CategoryImage { get; set; }
         public bool CategoryStatus { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }

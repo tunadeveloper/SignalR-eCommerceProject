@@ -1,4 +1,4 @@
-﻿using eCommerce.Business.Abstracts;
+using eCommerce.Business.Abstracts;
 using eCommerce.DataAccess.Repositories;
 using eCommerce.DataAccess.UnitOfWorks;
 using eCommerce.Entity.Entities;
@@ -17,20 +17,20 @@ namespace eCommerce.Business.Concretes
             _repository = _uow.Categories;
         }
 
-        public async Task<Category> GetByIdAsyncBL(int id)
-            => await _repository.GetByIdAsync(id);
+        public async Task<List<Category>> GetListBL(params Expression<Func<Category, object>>[] includes)
+            => await _repository.GetList(includes);
 
-        public async Task<List<Category>> GetListBL()
-            => await _repository.GetList();
+        public async Task<Category> GetByIdAsyncBL(int id, params Expression<Func<Category, object>>[] includes)
+            => await _repository.GetByIdAsync(id, includes);
 
-        public async Task<List<Category>> GetListByFilterAsyncBL(Expression<Func<Category, bool>> filter)
-            => await _repository.GetListByFilterAsync(filter);
+        public async Task<List<Category>> GetListByFilterAsyncBL(Expression<Func<Category, bool>> filter, params Expression<Func<Category, object>>[] includes)
+            => await _repository.GetListByFilterAsync(filter, includes);
+
+        public async Task<List<Category>> GetPagedAsyncBL(int page, int pageSize, params Expression<Func<Category, object>>[] includes)
+             => await _repository.GetPagedAsync(page, pageSize, includes);
 
         public async Task<List<Category>> GetListNoTrackingAsyncBL()
             => await _repository.GetListNoTrackingAsync();
-
-        public async Task<List<Category>> GetPagedAsyncBL(int page, int pageSize)
-             => await _repository.GetPagedAsync(page, pageSize);
 
         public async Task InsertAsyncBL(Category entity)
         {
@@ -46,7 +46,17 @@ namespace eCommerce.Business.Concretes
 
         public async Task DeleteAsyncBL(Category entity)
         {
-            await _repository.DeleteAsync(entity);
+            throw new NotImplementedException();
+        }
+
+        public async Task DeleteWithProductsAsync(int categoryId)
+        {
+            var category = await _repository.GetByIdAsync(categoryId);
+            var product = await _uow.Products.GetList(x => x.CategoryId == categoryId);
+            foreach (var item in product)
+                await _uow.Products.DeleteAsync(item);
+
+            await _repository.DeleteAsync(category);
             await _uow.SaveAsync();
         }
     }

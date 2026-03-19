@@ -17,20 +17,20 @@ namespace eCommerce.Business.Concretes
             _repository = _uow.Promotion;
         }
 
-        public async Task<Promotion> GetByIdAsyncBL(int id)
-            => await _repository.GetByIdAsync(id);
+        public async Task<List<Promotion>> GetListBL(params Expression<Func<Promotion, object>>[] includes)
+            => await _repository.GetList(includes);
 
-        public async Task<List<Promotion>> GetListBL()
-            => await _repository.GetList();
+        public async Task<Promotion> GetByIdAsyncBL(int id, params Expression<Func<Promotion, object>>[] includes)
+            => await _repository.GetByIdAsync(id, includes);
 
-        public async Task<List<Promotion>> GetListByFilterAsyncBL(Expression<Func<Promotion, bool>> filter)
-            => await _repository.GetListByFilterAsync(filter);
+        public async Task<List<Promotion>> GetListByFilterAsyncBL(Expression<Func<Promotion, bool>> filter, params Expression<Func<Promotion, object>>[] includes)
+            => await _repository.GetListByFilterAsync(filter, includes);
+
+        public async Task<List<Promotion>> GetPagedAsyncBL(int page, int pageSize, params Expression<Func<Promotion, object>>[] includes)
+             => await _repository.GetPagedAsync(page, pageSize, includes);
 
         public async Task<List<Promotion>> GetListNoTrackingAsyncBL()
             => await _repository.GetListNoTrackingAsync();
-
-        public async Task<List<Promotion>> GetPagedAsyncBL(int page, int pageSize)
-             => await _repository.GetPagedAsync(page, pageSize);
 
         public async Task InsertAsyncBL(Promotion entity)
         {

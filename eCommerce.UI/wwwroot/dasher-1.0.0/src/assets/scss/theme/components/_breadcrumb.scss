@@ -1,0 +1,12 @@
+// Breadcrumb
+
+.breadcrumb {
+  .breadcrumb-item {
+    a {
+      color: var(--#{$prefix}gray-800);
+      &:hover {
+        color: var(--#{$prefix}primary);
+      }
+    }
+  }
+}

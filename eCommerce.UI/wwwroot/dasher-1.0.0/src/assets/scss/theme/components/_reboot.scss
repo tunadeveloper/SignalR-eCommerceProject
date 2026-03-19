@@ -1,0 +1,40 @@
+// Body
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+// Links
+a {
+  color: $link-color;
+  text-decoration: none;
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: none;
+  }
+}
+
+:root {
+  --#{$prefix}box-shadow-primary: #{$box-shadow-primary};
+  --#{$prefix}box-shadow-info: #{$box-shadow-info};
+  --#{$prefix}box-shadow-danger: #{$box-shadow-danger};
+  --#{$prefix}box-shadow-success: #{$box-shadow-success};
+  --#{$prefix}box-shadow-warning: #{$box-shadow-warning};
+  --#{$prefix}box-shadow-xl: #{$box-shadow-xl};
+  --#{$prefix}box-shadow-xs: #{$box-shadow-xs};
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 6px;
+  height: 6px;
+  background: var(--#{$prefix}gray-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--#{$prefix}gray-300);
+  border-radius: 0.5rem;
+}
