@@ -1,4 +1,4 @@
-﻿using eCommerce.DataAccess.Abstracts;
+using eCommerce.DataAccess.Abstracts;
 using eCommerce.DataAccess.Concretes;
 using eCommerce.DataAccess.EntityFrameworks;
 using eCommerce.DataAccess.Repositories;
@@ -16,6 +16,8 @@ namespace eCommerce.DataAccess.UnitOfWorks
         public IProduct Products { get; }
         public IService Services { get; }
         public IPromotion Promotion { get; }
+        public IOrder Orders { get; }
+        public IOrderDetail OrderDetails { get; }
 
         public UnitOfWork(ECommerceContext context)
         {
@@ -27,6 +29,8 @@ namespace eCommerce.DataAccess.UnitOfWorks
             Products = new EfProduct(context);
             Services = new EfService(context);
             Promotion = new EfPromotion(context);
+            Orders = new EfOrder(context);
+            OrderDetails = new EfOrderDetail(context);
         }
 
         public async Task<int> SaveAsync() => await _context.SaveChangesAsync();

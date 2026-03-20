@@ -1,4 +1,4 @@
-﻿using eCommerce.Entity.Entities;
+using eCommerce.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
@@ -14,6 +14,8 @@ namespace eCommerce.DataAccess.Concretes
         public DbSet<Product> Products { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +24,18 @@ namespace eCommerce.DataAccess.Concretes
                 .HasConversion(
                     v => System.Text.Json.JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
                     v => System.Text.Json.JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions)null));
+
+            modelBuilder.Entity<Order>()
+                .HasMany(x => x.OrderDetails)
+                .WithOne(x => x.Order)
+                .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(x => x.Product)
+                .WithMany()
+                .HasForeignKey(x => x.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

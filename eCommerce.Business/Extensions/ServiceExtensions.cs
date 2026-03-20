@@ -25,6 +25,8 @@ namespace eCommerce.Business.Extensions
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IPromotionService, PromotionManager>();
             services.AddScoped<IServiceService, ServiceManager>();
+            services.AddScoped<IOrderService, OrderManager>();
+            services.AddScoped<IOrderDetailService, OrderDetailManager>();
             services.AddScoped<ISignalRHubService, SignalRHubService>();
 
             services.AddAutoMapper(typeof(CategoryProfile).Assembly);
