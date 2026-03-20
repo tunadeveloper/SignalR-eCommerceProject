@@ -1,6 +1,6 @@
 using AutoMapper;
 using eCommerce.Business.Abstracts;
-using eCommerce.DTO.DTOs.OrderDTOs;
+using eCommerce.DTO.DTOs.PaymentTransactionDTOs;
 using eCommerce.Entity.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,12 +8,12 @@ namespace eCommerce.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class PaymentTransactionsController : ControllerBase
     {
-        private readonly IOrderService _service;
+        private readonly IPaymentTransactionService _service;
         private readonly IMapper _mapper;
 
-        public OrdersController(IOrderService service, IMapper mapper)
+        public PaymentTransactionsController(IPaymentTransactionService service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
@@ -22,16 +22,16 @@ namespace eCommerce.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var values = await _service.GetListBL(x => x.ShippingCompany);
-            var mapping = _mapper.Map<List<ResultOrderDTO>>(values);
+            var values = await _service.GetListBL(x => x.Order);
+            var mapping = _mapper.Map<List<ResultPaymentTransactionDTO>>(values);
             return Ok(mapping);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var value = await _service.GetByIdAsyncBL(id, x => x.ShippingCompany);
-            var mapping = _mapper.Map<ResultOrderDTO>(value);
+            var value = await _service.GetByIdAsyncBL(id, x => x.Order);
+            var mapping = _mapper.Map<ResultPaymentTransactionDTO>(value);
             return Ok(mapping);
         }
 
@@ -39,41 +39,41 @@ namespace eCommerce.API.Controllers
         public async Task<IActionResult> GetListNoTracking()
         {
             var values = await _service.GetListNoTrackingAsyncBL();
-            var mapping = _mapper.Map<List<ResultOrderDTO>>(values);
+            var mapping = _mapper.Map<List<ResultPaymentTransactionDTO>>(values);
             return Ok(mapping);
         }
 
         [HttpGet("paged")]
         public async Task<IActionResult> GetPaged(int page, int pageSize)
         {
-            var values = await _service.GetPagedAsyncBL(page, pageSize, x => x.ShippingCompany);
-            var mapping = _mapper.Map<List<ResultOrderDTO>>(values);
+            var values = await _service.GetPagedAsyncBL(page, pageSize, x => x.Order);
+            var mapping = _mapper.Map<List<ResultPaymentTransactionDTO>>(values);
             return Ok(mapping);
         }
 
         [HttpGet("filter")]
-        public async Task<IActionResult> GetListByFilter(string customerName)
+        public async Task<IActionResult> GetListByFilter(string paymentMethod)
         {
             var values = await _service.GetListByFilterAsyncBL(
-                x => x.CustomerName.Contains(customerName),
-                x => x.ShippingCompany
+                x => x.PaymentMethod.Contains(paymentMethod),
+                x => x.Order
             );
-            var mapping = _mapper.Map<List<ResultOrderDTO>>(values);
+            var mapping = _mapper.Map<List<ResultPaymentTransactionDTO>>(values);
             return Ok(mapping);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert(CreateOrderDTO dto)
+        public async Task<IActionResult> Insert(CreatePaymentTransactionDTO dto)
         {
-            var mapping = _mapper.Map<Order>(dto);
+            var mapping = _mapper.Map<PaymentTransaction>(dto);
             await _service.InsertAsyncBL(mapping);
             return Ok("Başarıyla Eklendi");
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateOrderDTO dto)
+        public async Task<IActionResult> Update(UpdatePaymentTransactionDTO dto)
         {
-            var mapping = _mapper.Map<Order>(dto);
+            var mapping = _mapper.Map<PaymentTransaction>(dto);
             await _service.UpdateAsyncBL(mapping);
             return Ok("Başarıyla Gncellendi");
         }
@@ -81,7 +81,8 @@ namespace eCommerce.API.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteWithOrderDetailsAsyncBL(id);
+            var values = await _service.GetByIdAsyncBL(id);
+            await _service.DeleteAsyncBL(values);
             return Ok("Başarıyla Silindi");
         }
 

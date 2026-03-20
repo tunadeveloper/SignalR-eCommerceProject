@@ -18,6 +18,8 @@ namespace eCommerce.DataAccess.UnitOfWorks
         public IPromotion Promotion { get; }
         public IOrder Orders { get; }
         public IOrderDetail OrderDetails { get; }
+        public IPaymentTransaction PaymentTransactions { get; }
+        public IShippingCompany ShippingCompanies { get; }
 
         public UnitOfWork(ECommerceContext context)
         {
@@ -31,6 +33,8 @@ namespace eCommerce.DataAccess.UnitOfWorks
             Promotion = new EfPromotion(context);
             Orders = new EfOrder(context);
             OrderDetails = new EfOrderDetail(context);
+            PaymentTransactions = new EfPaymentTransaction(context);
+            ShippingCompanies = new EfShippingCompany(context);
         }
 
         public async Task<int> SaveAsync() => await _context.SaveChangesAsync();

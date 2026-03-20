@@ -10,7 +10,8 @@ namespace eCommerce.Business.Mappings
         {
             CreateMap<Order, CreateOrderDTO>().ReverseMap();
             CreateMap<Order, UpdateOrderDTO>().ReverseMap();
-            CreateMap<Order, ResultOrderDTO>();
+            CreateMap<Order, ResultOrderDTO>()
+                .ForMember(x => x.ShippingCompanyName, y => y.MapFrom(z => z.ShippingCompany.CompanyName));
         }
     }
 }

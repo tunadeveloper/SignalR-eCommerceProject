@@ -16,6 +16,8 @@ namespace eCommerce.DataAccess.Concretes
         public DbSet<Service> Services { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<PaymentTransaction> PaymentTransactions { get; set; }
+        public DbSet<ShippingCompany> ShippingCompanies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -15,6 +15,8 @@ namespace eCommerce.DataAccess.UnitOfWorks
         IPromotion Promotion { get; }
         IOrder Orders { get; }
         IOrderDetail OrderDetails { get; }
+        IPaymentTransaction PaymentTransactions { get; }
+        IShippingCompany ShippingCompanies { get; }
 
         Task<int> SaveAsync();
     }
