@@ -1,0 +1,76 @@
+@using eCommerce.DTO.DTOs.OrderDTOs
+@model List<ResultOrderDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+    int count = 0;
+}
+
+<div class="col-xl-12">
+    <div class="card card-lg shadow-sm">
+        <div class="card-header bg-transparent border-bottom py-4">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <div>
+                    <h5 class="mb-1">Sipariş Listesi</h5>
+                    <div class="text-secondary small">Toplam: @Model?.Count</div>
+                </div>
+                <a href="/Admin/Order/InsertOrder/" class="btn btn-success btn-sm">Yeni Sipariş</a>
+            </div>
+        </div>
+        <div class="px-4 pt-4">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                    @TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                    @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle text-nowrap mb-0 table-centered table-hover table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-uppercase small text-secondary">#</th>
+                        <th class="text-uppercase small text-secondary">Müşteri</th>
+                        <th class="text-uppercase small text-secondary">Toplam</th>
+                        <th class="text-uppercase small text-secondary">Durum</th>
+                        <th class="text-uppercase small text-secondary">Kargo</th>
+                        <th class="text-uppercase small text-secondary text-end">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td class="fw-semibold">@count</td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <span class="fw-semibold text-truncate">@item.CustomerName</span>
+                                    <span class="text-secondary small">#@item.Id</span>
+                                </div>
+                            </td>
+                            <td>@item.TotalPrice</td>
+                            <td>@item.OrderStatus</td>
+                            <td>@item.ShippingCompanyName</td>
+                            <td class="text-end">
+                                <div class="d-inline-flex gap-2">
+                                    <a href="/Admin/Order/UpdateOrder/@item.Id" class="btn btn-info btn-sm">Düzenle</a>
+                                    <a href="/Admin/Order/DeleteOrder/@item.Id" class="btn btn-danger btn-sm">Sil</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

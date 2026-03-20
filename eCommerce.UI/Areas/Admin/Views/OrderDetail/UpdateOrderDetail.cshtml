@@ -1,0 +1,89 @@
+@using eCommerce.DTO.DTOs.OrderDetailDTOs
+@using eCommerce.DTO.DTOs.OrderDTOs
+@using eCommerce.DTO.DTOs.ProductDTOs
+@model ResultOrderDetailDTO
+@{
+    ViewData["Title"] = "Sipariş Detayı Güncelle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+}
+
+<div class="row justify-content-center align-items-center py-4" style="min-height: calc(100vh - 140px);">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <div class="card card-lg shadow-lg border-0">
+            <div class="card-header bg-transparent border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">Sipariş Detayı Güncelle</h5>
+                        <div class="text-secondary">Sipariş detayı bilgilerini düzenle</div>
+                    </div>
+                    <span class="badge bg-warning-subtle text-warning-emphasis">Düzenle</span>
+                </div>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <form asp-area="Admin" asp-controller="OrderDetail" asp-action="UpdateOrderDetail" method="post" class="d-flex flex-column gap-3">
+                    <input asp-for="Id" type="hidden" />
+
+                    <div>
+                        <label class="form-label">Sipariş</label>
+                        <select name="OrderId" class="form-select form-select-lg" required>
+                            <option value="">Sipariş seçiniz</option>
+                            @foreach (var item in ViewBag.Orders)
+                            {
+                                <option value="@item.Id" @(item.Id.ToString() == Model.OrderId.ToString() ? "selected" : "")>
+                                    @item.CustomerName (#@item.Id)
+                                </option>
+                            }
+                        </select>
+                        <span asp-validation-for="OrderId" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Ürün</label>
+                        <select name="ProductId" class="form-select form-select-lg" required>
+                            <option value="">Ürün seçiniz</option>
+                            @foreach (var item in ViewBag.Products)
+                            {
+                                <option value="@item.Id" @(item.Id.ToString() == Model.ProductId.ToString() ? "selected" : "")>
+                                    @item.ProductName (#@item.Id)
+                                </option>
+                            }
+                        </select>
+                        <span asp-validation-for="ProductId" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Quantity" class="form-label"></label>
+                        <input name="Quantity" value="@Model.Quantity" class="form-control form-control-lg" placeholder="Adet" required />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="UnitPrice" class="form-label"></label>
+                        <input name="UnitPrice" value="@Model.UnitPrice" class="form-control form-control-lg" placeholder="Birim fiyat" required />
+                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2 pt-2">
+                        <button type="submit" class="btn btn-info">Güncelle</button>
+                        <a href="/Admin/OrderDetail/Index" class="btn btn-light">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

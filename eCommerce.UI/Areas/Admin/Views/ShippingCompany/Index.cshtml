@@ -1,0 +1,70 @@
+@using eCommerce.DTO.DTOs.ShippingCompanyDTOs
+@model List<ResultShippingCompanyDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+    int count = 0;
+}
+
+<div class="col-xl-12">
+    <div class="card card-lg shadow-sm">
+        <div class="card-header bg-transparent border-bottom py-4">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <div>
+                    <h5 class="mb-1">Kargo Firmaları</h5>
+                    <div class="text-secondary small">Toplam: @Model?.Count</div>
+                </div>
+                <a href="/Admin/ShippingCompany/InsertShippingCompany/" class="btn btn-success btn-sm">Yeni Firma</a>
+            </div>
+        </div>
+        <div class="px-4 pt-4">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                    @TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                    @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle text-nowrap mb-0 table-centered table-hover table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-uppercase small text-secondary">#</th>
+                        <th class="text-uppercase small text-secondary">Firma</th>
+                        <th class="text-uppercase small text-secondary text-end">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td class="fw-semibold">@count</td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <span class="fw-semibold text-truncate">@item.CompanyName</span>
+                                    <span class="text-secondary small">#@item.Id</span>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <div class="d-inline-flex gap-2">
+                                    <a href="/Admin/ShippingCompany/UpdateShippingCompany/@item.Id" class="btn btn-info btn-sm">Düzenle</a>
+                                    <a href="/Admin/ShippingCompany/DeleteShippingCompany/@item.Id" class="btn btn-danger btn-sm">Sil</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

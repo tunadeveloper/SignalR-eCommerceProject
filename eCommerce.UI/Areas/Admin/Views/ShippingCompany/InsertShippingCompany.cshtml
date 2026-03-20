@@ -1,0 +1,51 @@
+@using eCommerce.DTO.DTOs.ShippingCompanyDTOs
+@model CreateShippingCompanyDTO
+@{
+    ViewData["Title"] = "Kargo Firması Ekle";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
+}
+
+<div class="row justify-content-center align-items-center py-4" style="min-height: calc(100vh - 140px);">
+    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <div class="card card-lg shadow-lg border-0">
+            <div class="card-header bg-transparent border-bottom py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">Kargo Firması Ekle</h5>
+                        <div class="text-secondary">Yeni firma bilgilerini gir</div>
+                    </div>
+                    <span class="badge bg-primary-subtle text-primary-emphasis">Yeni</span>
+                </div>
+            </div>
+            <div class="card-body p-4 p-lg-5">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                <form asp-area="Admin" asp-controller="ShippingCompany" asp-action="InsertShippingCompany" method="post" class="d-flex flex-column gap-3">
+                    <div>
+                        <label name="CompanyName" class="form-label"></label>
+                        <input name="CompanyName" class="form-control form-control-lg" placeholder="Firma adı" required />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2 pt-2">
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                        <a href="/Admin/ShippingCompany/Index" class="btn btn-light">İptal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
