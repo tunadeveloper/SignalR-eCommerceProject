@@ -1,4 +1,7 @@
+using eCommerce.DTO.DTOs.OrderDetailDTOs;
 using eCommerce.DTO.DTOs.OrderDTOs;
+using eCommerce.DTO.DTOs.PaymentTransactionDTOs;
+using eCommerce.DTO.DTOs.ProductDTOs;
 using eCommerce.DTO.DTOs.ShippingCompanyDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -19,41 +22,85 @@ namespace eCommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7224/api/Orders");
-            if (responseMessage.IsSuccessStatusCode)
+            var ordersResponse = await client.GetAsync("https://localhost:7224/api/Orders");
+            List<ResultOrderDTO> orders = new();
+            if (ordersResponse.IsSuccessStatusCode)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultOrderDTO>>(jsonData);
-                return View(values);
+                var json = await ordersResponse.Content.ReadAsStringAsync();
+                orders = JsonConvert.DeserializeObject<List<ResultOrderDTO>>(json) ?? new();
             }
-            return View();
+
+            var detailsResponse = await client.GetAsync("https://localhost:7224/api/OrderDetails");
+            List<ResultOrderDetailDTO> orderDetails = new();
+            if (detailsResponse.IsSuccessStatusCode)
+            {
+                var json = await detailsResponse.Content.ReadAsStringAsync();
+                orderDetails = JsonConvert.DeserializeObject<List<ResultOrderDetailDTO>>(json) ?? new();
+            }
+
+            var paymentsResponse = await client.GetAsync("https://localhost:7224/api/PaymentTransactions");
+            List<ResultPaymentTransactionDTO> payments = new();
+            if (paymentsResponse.IsSuccessStatusCode)
+            {
+                var json = await paymentsResponse.Content.ReadAsStringAsync();
+                payments = JsonConvert.DeserializeObject<List<ResultPaymentTransactionDTO>>(json) ?? new();
+            }
+
+            ViewBag.OrderDetails = orderDetails;
+            ViewBag.Payments = payments;
+
+            return View(orders);
         }
 
         public async Task<IActionResult> InsertOrder()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7224/api/ShippingCompanies");
-            var json = await response.Content.ReadAsStringAsync();
-            var shippingCompanies = JsonConvert.DeserializeObject<List<ResultShippingCompanyDTO>>(json);
 
+            var shippingResponse = await client.GetAsync("https://localhost:7224/api/ShippingCompanies");
+            var shippingJson = await shippingResponse.Content.ReadAsStringAsync();
+            var shippingCompanies = JsonConvert.DeserializeObject<List<ResultShippingCompanyDTO>>(shippingJson);
             ViewBag.ShippingCompanies = shippingCompanies;
+
+            var productsResponse = await client.GetAsync("https://localhost:7224/api/Products");
+            var productsJson = await productsResponse.Content.ReadAsStringAsync();
+            var products = JsonConvert.DeserializeObject<List<ResultProductDTO>>(productsJson);
+            ViewBag.Products = products;
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertOrder(CreateOrderDTO dto)
+        public async Task<IActionResult> InsertOrder(CreateOrderDTO dto, List<CreateOrderDetailDTO> orderDetails)
         {
             var client = _httpClientFactory.CreateClient();
+
             var jsonData = JsonConvert.SerializeObject(dto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("https://localhost:7224/api/Orders", content);
-            if (responseMessage.IsSuccessStatusCode)
+
+            if (!responseMessage.IsSuccessStatusCode)
             {
-                TempData["Success"] = "Sipariş Başarıyla Eklendi";
-                return RedirectToAction(nameof(Index));
+                TempData["Error"] = "Sipariş Eklenirken Bir Sorun Oluştu";
+                return RedirectToAction(nameof(InsertOrder));
             }
-            TempData["Error"] = "Sipariş Eklenirken Bir Sorun Oluştu";
-            return View();
+
+            var responseJson = await responseMessage.Content.ReadAsStringAsync();
+            ResultOrderDTO? createdOrder = null;
+            try { createdOrder = JsonConvert.DeserializeObject<ResultOrderDTO>(responseJson); } catch { }
+
+            if (createdOrder != null && orderDetails != null && orderDetails.Count > 0)
+            {
+                foreach (var detail in orderDetails)
+                {
+                    detail.OrderId = int.Parse(createdOrder.Id);
+                    var detailJson = JsonConvert.SerializeObject(detail);
+                    StringContent detailContent = new StringContent(detailJson, Encoding.UTF8, "application/json");
+                    await client.PostAsync("https://localhost:7224/api/OrderDetails", detailContent);
+                }
+            }
+
+            TempData["Success"] = "Sipariş Başarıyla Eklendi";
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> UpdateOrder(int id)
@@ -110,4 +157,3 @@ namespace eCommerce.UI.Areas.Admin.Controllers
         }
     }
 }
-

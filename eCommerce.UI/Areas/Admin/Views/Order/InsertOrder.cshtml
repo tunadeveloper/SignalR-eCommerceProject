@@ -1,18 +1,18 @@
 @using eCommerce.DTO.DTOs.OrderDTOs
-@model CreateOrderDTO
+@using eCommerce.DTO.DTOs.OrderDetailDTOs
 @{
     ViewData["Title"] = "Sipariş Ekle";
     Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
 }
 
-<div class="row justify-content-center align-items-center py-4" style="min-height: calc(100vh - 140px);">
-    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+<div class="row justify-content-center py-4">
+    <div class="col-12 col-xl-10">
         <div class="card card-lg shadow-lg border-0">
             <div class="card-header bg-transparent border-bottom py-4">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <h5 class="mb-1">Sipariş Ekle</h5>
-                        <div class="text-secondary">Sipariş bilgilerini gir</div>
+                        <div class="text-secondary">Sipariş bilgilerini ve sipariş detaylarını girin</div>
                     </div>
                     <span class="badge bg-primary-subtle text-primary-emphasis">Yeni</span>
                 </div>
@@ -32,35 +32,59 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 }
-                <form asp-area="Admin" asp-controller="Order" asp-action="InsertOrder" method="post" class="d-flex flex-column gap-3">
-                    <div>
-                        <label name="CustomerName" class="form-label"></label>
-                        <input name="CustomerName" class="form-control form-control-lg" placeholder="Müşteri adı" required />
-                        <span asp-validation-for="CustomerName" class="text-danger"></span>
+
+                <form asp-area="Admin" asp-controller="Order" asp-action="InsertOrder" method="post" id="insertOrderForm">
+
+                    <h6 class="fw-bold mb-3 border-bottom pb-2 text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z" /></svg>
+                        Sipariş Bilgileri
+                    </h6>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Müşteri Adı</label>
+                            <input name="CustomerName" class="form-control" placeholder="Müşteri adı" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Toplam Tutar</label>
+                            <div class="input-group">
+                                <input name="TotalPrice" type="number" step="0.01" class="form-control" placeholder="0.00" id="totalPriceField" required />
+                                <span class="input-group-text">₺</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sipariş Durumu</label>
+                            <input name="OrderStatus" class="form-control" placeholder="Sipariş durumu" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Kargo Firması</label>
+                            <select name="ShippingCompanyId" class="form-select" required>
+                                <option value="">Firma seçiniz</option>
+                                @foreach (var item in ViewBag.ShippingCompanies)
+                                {
+                                    <option value="@item.Id">@item.CompanyName</option>
+                                }
+                            </select>
+                        </div>
                     </div>
 
-                    <div>
-                        <label name="TotalPrice" class="form-label"></label>
-                        <input name="TotalPrice" class="form-control form-control-lg" placeholder="Toplam tutar" required />
-                        <span asp-validation-for="TotalPrice" class="text-danger"></span>
+                    <h6 class="fw-bold mb-3 border-bottom pb-2 text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1"><path d="M4 6h16M4 10h16M4 14h8" /></svg>
+                        Sipariş Detayları
+                    </h6>
+
+                    <div id="orderDetailsContainer" class="mb-3">
                     </div>
 
-                    <div>
-                        <label name="OrderStatus" class="form-label"></label>
-                        <input name="OrderStatus" class="form-control form-control-lg" placeholder="Sipariş durumu" required />
-                        <span asp-validation-for="OrderStatus" class="text-danger"></span>
-                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-sm mb-4" id="addDetailRow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                        Ürün Ekle
+                    </button>
 
-                    <div>
-                        <label class="form-label">Kargo Firması</label>
-                        <select name="ShippingCompanyId" class="form-select form-select-lg" required>
-                            <option value="">Firma seçiniz</option>
-                            @foreach (var item in ViewBag.ShippingCompanies)
-                            {
-                                <option value="@item.Id">@item.CompanyName</option>
-                            }
-                        </select>
-                        <span asp-validation-for="ShippingCompanyId" class="text-danger"></span>
+                    <div id="detailSummary" class="alert alert-light border d-none mb-4">
+                        <div class="d-flex justify-content-between">
+                            <span class="text-secondary">Ürün detayları toplamı:</span>
+                            <span class="fw-bold" id="detailSummaryTotal">0.00 ₺</span>
+                        </div>
                     </div>
 
                     <div class="d-flex gap-2 pt-2">
@@ -73,3 +97,80 @@
     </div>
 </div>
 
+<script>
+    var products = [
+        @foreach (var p in ViewBag.Products)
+        {
+            @:{ id: @p.Id, name: "@Html.Raw(p.ProductName)" },
+        }
+    ];
+
+    var detailIndex = 0;
+
+    function recalcTotal() {
+        var rows = document.querySelectorAll('.detail-row');
+        var total = 0;
+        rows.forEach(function (row) {
+            var qty = parseFloat(row.querySelector('.detail-qty').value) || 0;
+            var price = parseFloat(row.querySelector('.detail-price').value) || 0;
+            var lineTotal = qty * price;
+            row.querySelector('.detail-line-total').textContent = lineTotal.toFixed(2) + ' ₺';
+            total += lineTotal;
+        });
+        if (rows.length > 0) {
+            document.getElementById('detailSummary').classList.remove('d-none');
+            document.getElementById('detailSummaryTotal').textContent = total.toFixed(2) + ' ₺';
+        } else {
+            document.getElementById('detailSummary').classList.add('d-none');
+        }
+    }
+
+    document.getElementById('addDetailRow').addEventListener('click', function () {
+        var container = document.getElementById('orderDetailsContainer');
+        var idx = detailIndex++;
+
+        var productOptions = '<option value="">Ürün seçiniz</option>';
+        products.forEach(function (p) {
+            productOptions += '<option value="' + p.id + '">' + p.name + '</option>';
+        });
+
+        var row = document.createElement('div');
+        row.className = 'detail-row card border-0 bg-light mb-2 p-3';
+        row.innerHTML = `
+            <div class="row g-2 align-items-end">
+                <div class="col-md-5">
+                    <label class="form-label small text-secondary mb-1">Ürün</label>
+                    <select name="orderDetails[${idx}].ProductId" class="form-select form-select-sm" required>
+                        ${productOptions}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small text-secondary mb-1">Adet</label>
+                    <input name="orderDetails[${idx}].Quantity" type="number" min="1" value="1" class="form-control form-control-sm detail-qty" required />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small text-secondary mb-1">Birim Fiyat (₺)</label>
+                    <input name="orderDetails[${idx}].UnitPrice" type="number" step="0.01" min="0" value="0" class="form-control form-control-sm detail-price" required />
+                </div>
+                <div class="col-md-1">
+                    <label class="form-label small text-secondary mb-1">Toplam</label>
+                    <div class="fw-semibold text-nowrap detail-line-total small pt-1">0.00 ₺</div>
+                </div>
+                <div class="col-md-1 text-end">
+                    <button type="button" class="btn btn-outline-danger btn-sm remove-row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        row.querySelector('.detail-qty').addEventListener('input', recalcTotal);
+        row.querySelector('.detail-price').addEventListener('input', recalcTotal);
+        row.querySelector('.remove-row').addEventListener('click', function () {
+            row.remove();
+            recalcTotal();
+        });
+
+        container.appendChild(row);
+    });
+</script>
