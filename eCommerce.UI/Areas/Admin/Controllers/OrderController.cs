@@ -27,7 +27,7 @@ namespace eCommerce.UI.Areas.Admin.Controllers
             if (ordersResponse.IsSuccessStatusCode)
             {
                 var json = await ordersResponse.Content.ReadAsStringAsync();
-                orders = JsonConvert.DeserializeObject<List<ResultOrderDTO>>(json) ?? new();
+                orders = JsonConvert.DeserializeObject<List<ResultOrderDTO>>(json);
             }
 
             var detailsResponse = await client.GetAsync("https://localhost:7224/api/OrderDetails");
@@ -35,7 +35,7 @@ namespace eCommerce.UI.Areas.Admin.Controllers
             if (detailsResponse.IsSuccessStatusCode)
             {
                 var json = await detailsResponse.Content.ReadAsStringAsync();
-                orderDetails = JsonConvert.DeserializeObject<List<ResultOrderDetailDTO>>(json) ?? new();
+                orderDetails = JsonConvert.DeserializeObject<List<ResultOrderDetailDTO>>(json);
             }
 
             var paymentsResponse = await client.GetAsync("https://localhost:7224/api/PaymentTransactions");
@@ -43,7 +43,7 @@ namespace eCommerce.UI.Areas.Admin.Controllers
             if (paymentsResponse.IsSuccessStatusCode)
             {
                 var json = await paymentsResponse.Content.ReadAsStringAsync();
-                payments = JsonConvert.DeserializeObject<List<ResultPaymentTransactionDTO>>(json) ?? new();
+                payments = JsonConvert.DeserializeObject<List<ResultPaymentTransactionDTO>>(json);
             }
 
             ViewBag.OrderDetails = orderDetails;
@@ -86,17 +86,12 @@ namespace eCommerce.UI.Areas.Admin.Controllers
 
             var responseJson = await responseMessage.Content.ReadAsStringAsync();
             ResultOrderDTO? createdOrder = null;
-            try { createdOrder = JsonConvert.DeserializeObject<ResultOrderDTO>(responseJson); } catch { }
-
-            if (createdOrder != null && orderDetails != null && orderDetails.Count > 0)
+            foreach (var detail in orderDetails)
             {
-                foreach (var detail in orderDetails)
-                {
-                    detail.OrderId = int.Parse(createdOrder.Id);
-                    var detailJson = JsonConvert.SerializeObject(detail);
-                    StringContent detailContent = new StringContent(detailJson, Encoding.UTF8, "application/json");
-                    await client.PostAsync("https://localhost:7224/api/OrderDetails", detailContent);
-                }
+                detail.OrderId = int.Parse(createdOrder.Id);
+                var detailJson = JsonConvert.SerializeObject(detail);
+                StringContent detailContent = new StringContent(detailJson, Encoding.UTF8, "application/json");
+                await client.PostAsync("https://localhost:7224/api/OrderDetails", detailContent);
             }
 
             TempData["Success"] = "Sipariş Başarıyla Eklendi";
