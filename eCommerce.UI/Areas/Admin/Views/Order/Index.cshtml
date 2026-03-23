@@ -6,10 +6,9 @@
     ViewData["Title"] = "Siparişler";
     Layout = "~/Areas/Admin/Views/AdminLayout/_Layout.cshtml";
     int count = 0;
-    int dCount = 0;
-    int mCount = 0;
-    var allDetails = ViewBag.OrderDetails as List<ResultOrderDetailDTO>;
-    var allPayments = ViewBag.Payments as List<ResultPaymentTransactionDTO>;
+
+    var allDetails = ViewBag.OrderDetails as List<ResultOrderDetailDTO> ?? new List<ResultOrderDetailDTO>();
+    var allPayments = ViewBag.Payments as List<ResultPaymentTransactionDTO> ?? new List<ResultPaymentTransactionDTO>();
 }
 
 <div class="col-xl-12">
@@ -86,6 +85,7 @@
     </div>
 </div>
 
+@{int mCount = 0;}
 @foreach (var item in Model)
 {
     mCount++;
@@ -138,6 +138,8 @@
                     </div>
 
                     <h6 class="fw-semibold text-uppercase small text-secondary mb-3">Sipariş Ürünleri</h6>
+                    @if (details.Any())
+                    {
                         <div class="table-responsive mb-4">
                             <table class="table table-sm table-bordered align-middle mb-0">
                                 <thead class="table-light">
@@ -150,6 +152,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @{ int dCount = 0; }
                                     @foreach (var d in details)
                                     {
                                         dCount++;
@@ -170,8 +173,17 @@
                                 </tfoot>
                             </table>
                         </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-light border mb-4 small text-secondary">
+                            Bu siparişe ait ürün detayı bulunmuyor.
+                        </div>
+                    }
 
                     <h6 class="fw-semibold text-uppercase small text-secondary mb-3">Ödeme Bilgileri</h6>
+                    @if (payment != null)
+                    {
                         <div class="row g-3">
                             <div class="col-6 col-md-4">
                                 <div class="p-3 rounded bg-light h-100">
@@ -200,6 +212,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-light border small text-secondary">
+                            Bu siparişe ait ödeme kaydı bulunmuyor.
                         </div>
                     }
 

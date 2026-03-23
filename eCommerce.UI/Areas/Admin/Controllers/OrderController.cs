@@ -27,7 +27,7 @@ namespace eCommerce.UI.Areas.Admin.Controllers
             if (ordersResponse.IsSuccessStatusCode)
             {
                 var json = await ordersResponse.Content.ReadAsStringAsync();
-                orders = JsonConvert.DeserializeObject<List<ResultOrderDTO>>(json);
+                orders = JsonConvert.DeserializeObject<List<ResultOrderDTO>>(json) ?? new();
             }
 
             var detailsResponse = await client.GetAsync("https://localhost:7224/api/OrderDetails");
@@ -35,7 +35,7 @@ namespace eCommerce.UI.Areas.Admin.Controllers
             if (detailsResponse.IsSuccessStatusCode)
             {
                 var json = await detailsResponse.Content.ReadAsStringAsync();
-                orderDetails = JsonConvert.DeserializeObject<List<ResultOrderDetailDTO>>(json);
+                orderDetails = JsonConvert.DeserializeObject<List<ResultOrderDetailDTO>>(json) ?? new();
             }
 
             var paymentsResponse = await client.GetAsync("https://localhost:7224/api/PaymentTransactions");
@@ -43,7 +43,7 @@ namespace eCommerce.UI.Areas.Admin.Controllers
             if (paymentsResponse.IsSuccessStatusCode)
             {
                 var json = await paymentsResponse.Content.ReadAsStringAsync();
-                payments = JsonConvert.DeserializeObject<List<ResultPaymentTransactionDTO>>(json);
+                payments = JsonConvert.DeserializeObject<List<ResultPaymentTransactionDTO>>(json) ?? new();
             }
 
             ViewBag.OrderDetails = orderDetails;
