@@ -1,10 +1,10 @@
 @{
-    ViewData["Title"] = "Ana Sayfa";
+    ViewData["Title"] = "Home Page";
     Layout = null;
 }
 
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <!-- Required meta tags -->
@@ -29,7 +29,7 @@
     <!-- build:css /src/assets/css/theme.min.css -->
     <link rel="stylesheet" href="assets/css/theme.css" />
 
-    <title>FreshCart - Taze Market Alışverişi</title>
+    <title>Free Freshcart Tailwind Ecommerce HTML Template</title>
 </head>
 
 <body>
@@ -41,8 +41,8 @@
                     <div class="flex flex-wrap">
                         <div class="md:w-1/2 w-full text-center md:text-left">
                             <span>
-                                Süper Fırsatlar - Kuponlarla daha fazla
-                                tasarruf edin
+                                Super Value Deals - Save more with
+                                coupons
                             </span>
                         </div>
                         <div class="w-1/2 text-right hidden lg:block">
@@ -139,7 +139,7 @@
                                 <div class="relative">
                                     <label for="searchProducts" class="invisible hidden">Search</label>
                                     <input class="border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base"
-                                           type="search" placeholder="Ürün ara" id="searchProducts" />
+                                           type="search" placeholder="Search for products" id="searchProducts" />
                                     <button class="absolute right-0 top-0 p-3" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search"
                                              width="16" height="16" viewBox="0 0 24 24" stroke-width="2"
@@ -347,7 +347,7 @@
                                     </li>
                                     <li class="nav-item dropdown w-full lg:w-auto">
                                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Menü</a>
+                                           aria-expanded="false">Dropdown Menu</a>
                                         <ul class="dropdown-menu">
 
                                             <li>
@@ -448,7 +448,7 @@
 
                         <button type="submit"
                                 class="btn inline-flex items-center gap-x-2 bg-green-600 text-white border-green-600 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-green-700 hover:border-green-700 active:bg-green-700 active:border-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 justify-center">
-                            Kayıt Ol
+                            Sign Up
                         </button>
                     </form>
                 </div>

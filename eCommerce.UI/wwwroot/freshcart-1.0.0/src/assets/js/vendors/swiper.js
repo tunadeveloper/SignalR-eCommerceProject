@@ -6,6 +6,7 @@ function initializeSwiperCarousels() {
 	const swiperContainers = document.querySelectorAll('.swiper-container');
 
 	swiperContainers.forEach((swiperContainer) => {
+		if (typeof Swiper === 'undefined') return;
 		const speed = swiperContainer.getAttribute('data-speed') || 400;
 		const spaceBetween = swiperContainer.getAttribute('data-space-between') || 100;
 		const paginationEnabled = swiperContainer.getAttribute('data-pagination') === 'true';
@@ -67,9 +68,13 @@ function initializeSwiperCarousels() {
 		}
 
 		if (navigationEnabled) {
+			const nextEl = swiperContainer.querySelector('.swiper-button-next');
+			const prevEl = swiperContainer.querySelector('.swiper-button-prev');
+
+			if (!nextEl || !prevEl) return;
 			swiperOptions.navigation = {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
+				nextEl,
+				prevEl,
 			};
 		} else {
 			// Add the class to hide the navigation container
