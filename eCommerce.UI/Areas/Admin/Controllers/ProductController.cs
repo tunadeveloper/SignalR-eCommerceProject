@@ -1,5 +1,5 @@
-using eCommerce.DTO.DTOs.CategoryDTOs;
-using eCommerce.DTO.DTOs.ProductDTOs;
+using eCommerce.UI.DTOs.CategoryDTOs;
+using eCommerce.UI.DTOs.ProductDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;

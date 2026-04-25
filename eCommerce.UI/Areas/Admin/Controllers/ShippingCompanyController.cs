@@ -1,4 +1,4 @@
-using eCommerce.DTO.DTOs.ShippingCompanyDTOs;
+using eCommerce.UI.DTOs.ShippingCompanyDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;

@@ -1,5 +1,5 @@
-using eCommerce.DTO.DTOs.OrderDTOs;
-using eCommerce.DTO.DTOs.PaymentTransactionDTOs;
+using eCommerce.UI.DTOs.OrderDTOs;
+using eCommerce.UI.DTOs.PaymentTransactionDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;

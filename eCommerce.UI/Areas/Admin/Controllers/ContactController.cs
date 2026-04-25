@@ -1,4 +1,4 @@
-using eCommerce.DTO.DTOs.ContactDTOs;
+using eCommerce.UI.DTOs.ContactDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;

@@ -1,9 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eCommerce.UI.DTOs.CategoryDTOs;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace eCommerce.UI.ViewComponents.Home
 {
     public class _HomeCategoryComponentPartial:ViewComponent
     {
-        public IViewComponentResult Invoke() => View();
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public _HomeCategoryComponentPartial(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync(){
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync("https://localhost:7224/api/Categories");
+            
+            var values = response.IsSuccessStatusCode ? JsonConvert.DeserializeObject<List<ResultCategoryDTO>>(await response.Content.ReadAsStringAsync())
+                : new List<ResultCategoryDTO>();
+            return View(values);
+        }
     }
 }
