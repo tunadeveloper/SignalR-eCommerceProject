@@ -5,10 +5,15 @@
 
 <!doctype html>
 <html lang="tr">
-@await Component.InvokeAsync("_LayoutHeadComponentPartial")
+
+@await Component.InvokeAsync(typeof(eCommerce.UI.ViewComponents.Layout._LayoutHeadComponentPartial))
+
 <body>
-    @await Component.InvokeAsync("_LayoutHeaderComponentPartial")
-    @await Component.InvokeAsync("_LayoutShopCartComponentPartial")
-    @await Component.InvokeAsync("_LayoutScriptComponentPartial")
+    @await Component.InvokeAsync(typeof(eCommerce.UI.ViewComponents.Layout._LayoutHeaderComponentPartial))
+    @await Component.InvokeAsync(typeof(eCommerce.UI.ViewComponents.Layout._LayoutShopCartComponentPartial))
+    @await Component.InvokeAsync(typeof(eCommerce.UI.ViewComponents.Layout._LayoutModalComponentPartial))
+    @RenderBody()
+    @await Component.InvokeAsync(typeof(eCommerce.UI.ViewComponents.Layout._LayoutScriptComponentPartial))
 </body>
+
 </html>
