@@ -6,19 +6,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@await Component.InvokeAsync("_LayoutHeadComponentPartial")
+@await Component.InvokeAsync(typeof(eCommerce.UI.Areas.Admin.ViewComponents.Layout._LayoutHeadComponentPartial))
 
 <body>
-    @await Component.InvokeAsync("_LayoutSidebarComponentPartial")
+    @await Component.InvokeAsync(typeof(eCommerce.UI.Areas.Admin.ViewComponents.Layout._LayoutSidebarComponentPartial))
 
     <div id="content" class="position-relative h-100">
-        @await Component.InvokeAsync("_LayoutNavbarComponentPartial")
+        @await Component.InvokeAsync(typeof(eCommerce.UI.Areas.Admin.ViewComponents.Layout._LayoutNavbarComponentPartial))
 
         <div class="custom-container">
             @RenderBody()
         </div>
     </div>
 
-    @await Component.InvokeAsync("_LayoutScriptComponentPartial")
+    @await Component.InvokeAsync(typeof(eCommerce.UI.Areas.Admin.ViewComponents.Layout._LayoutScriptComponentPartial))
 </body>
 </html>
