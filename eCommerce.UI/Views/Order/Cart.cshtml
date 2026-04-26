@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main>
+<main class="cart-page">
     <section class="page-hero">
         <div class="container">
             <h1>Sepetim</h1>
@@ -11,11 +11,33 @@
         </div>
     </section>
 
+    <section class="container">
+        <div class="order-progress modern-card p-4 p-lg-5 mb-5">
+            <div class="order-progress-track">
+                <span class="order-progress-fill step-1"></span>
+            </div>
+            <div class="order-progress-steps">
+                <div class="order-step is-active">
+                    <span class="order-step-number">1</span>
+                    <span class="order-step-label">Sepet</span>
+                </div>
+                <div class="order-step">
+                    <span class="order-step-number">2</span>
+                    <span class="order-step-label">Kargo Seçimi</span>
+                </div>
+                <div class="order-step">
+                    <span class="order-step-number">3</span>
+                    <span class="order-step-label">Sipariş Alındı</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="container mb-10">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div class="lg:col-span-2 modern-card p-4 p-lg-5">
-                <h2 class="section-title">Sepetteki Ürünler</h2>
-                <div class="table-responsive">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 xl:gap-6">
+            <div class="lg:col-span-2 modern-card p-5 p-lg-6">
+                <h2 class="section-title cart-section-title">Sepetteki Ürünler</h2>
+                <div class="table-responsive cart-table-wrap">
                     <table class="table table-clean align-middle">
                         <thead>
                             <tr>
@@ -49,15 +71,15 @@
                 </div>
             </div>
 
-            <div class="modern-card p-4 p-lg-5 h-fit">
-                <h2 class="section-title">Sipariş Özeti</h2>
-                <ul class="list-unstyled space-y-2 text-gray-700">
+            <div class="modern-card p-5 p-lg-6 h-fit cart-summary-card">
+                <h2 class="section-title cart-section-title">Sipariş Özeti</h2>
+                <ul class="list-unstyled space-y-3 text-gray-700 cart-summary-list">
                     <li class="flex justify-between"><span>Ara Toplam</span><strong>469.00 TL</strong></li>
                     <li class="flex justify-between"><span>Kargo</span><strong>29.90 TL</strong></li>
                     <li class="flex justify-between"><span>İndirim</span><strong>-35.00 TL</strong></li>
-                    <li class="border-t pt-2 mt-2 flex justify-between text-gray-900"><span>Genel Toplam</span><strong>463.90 TL</strong></li>
+                    <li class="border-t pt-3 mt-3 flex justify-between text-gray-900"><span>Genel Toplam</span><strong>463.90 TL</strong></li>
                 </ul>
-                <a href="/Order/Received/" class="btn inline-flex items-center justify-center w-full gap-x-2 bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700 mt-4">
+                <a href="/Order/Shipping/" class="btn inline-flex items-center justify-center w-full gap-x-2 bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700 mt-5 py-3">
                     Siparişi Tamamla
                 </a>
             </div>

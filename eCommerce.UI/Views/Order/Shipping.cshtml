@@ -1,0 +1,114 @@
+@{
+    ViewData["Title"] = "Kargo Firması Seçimi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="shipping-page">
+    <section class="page-hero">
+        <div class="container">
+            <h1>Kargo Firması Seçimi</h1>
+            <p>Siparişin sana en uygun şekilde ulaşması için teslimat partnerini seçebilirsin.</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="order-progress modern-card p-4 p-lg-5 mb-5">
+            <div class="order-progress-track">
+                <span class="order-progress-fill step-2"></span>
+            </div>
+            <div class="order-progress-steps">
+                <div class="order-step is-completed">
+                    <span class="order-step-number">1</span>
+                    <span class="order-step-label">Sepet</span>
+                </div>
+                <div class="order-step is-active">
+                    <span class="order-step-number">2</span>
+                    <span class="order-step-label">Kargo Seçimi</span>
+                </div>
+                <div class="order-step">
+                    <span class="order-step-number">3</span>
+                    <span class="order-step-label">Sipariş Alındı</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mb-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            <div class="lg:col-span-2 modern-card p-5 p-lg-6">
+                <h2 class="section-title shipping-title">Teslimat Seçenekleri</h2>
+
+                <label class="shipping-option is-selected">
+                    <input type="radio" name="shippingCompany" checked>
+                    <div class="shipping-option-content">
+                        <div class="shipping-brand">
+                            <span class="shipping-logo">YK</span>
+                            <div>
+                                <strong>Yurtİçi Kargo</strong>
+                                <p>Yarın teslimat - 09:00 / 18:00</p>
+                            </div>
+                        </div>
+                        <div class="shipping-price">39.90 TL</div>
+                    </div>
+                </label>
+
+                <label class="shipping-option">
+                    <input type="radio" name="shippingCompany">
+                    <div class="shipping-option-content">
+                        <div class="shipping-brand">
+                            <span class="shipping-logo">AG</span>
+                            <div>
+                                <strong>Aras Kargo</strong>
+                                <p>1-2 iş günü içinde teslimat</p>
+                            </div>
+                        </div>
+                        <div class="shipping-price">34.90 TL</div>
+                    </div>
+                </label>
+
+                <label class="shipping-option">
+                    <input type="radio" name="shippingCompany">
+                    <div class="shipping-option-content">
+                        <div class="shipping-brand">
+                            <span class="shipping-logo">MG</span>
+                            <div>
+                                <strong>MNG Kargo</strong>
+                                <p>Standart gönderi - Takip numaralı</p>
+                            </div>
+                        </div>
+                        <div class="shipping-price">29.90 TL</div>
+                    </div>
+                </label>
+
+                <label class="shipping-option">
+                    <input type="radio" name="shippingCompany">
+                    <div class="shipping-option-content">
+                        <div class="shipping-brand">
+                            <span class="shipping-logo">SK</span>
+                            <div>
+                                <strong>Sürat Kargo</strong>
+                                <p>Ekonomik teslimat - 2 iş günü</p>
+                            </div>
+                        </div>
+                        <div class="shipping-price">24.90 TL</div>
+                    </div>
+                </label>
+            </div>
+
+            <div class="modern-card p-5 p-lg-6 h-fit">
+                <h2 class="section-title shipping-title">Teslimat Özeti</h2>
+                <ul class="list-unstyled space-y-3 shipping-summary">
+                    <li class="flex justify-between"><span>Sipariş Tutarı</span><strong>463.90 TL</strong></li>
+                    <li class="flex justify-between"><span>Kargo</span><strong>39.90 TL</strong></li>
+                    <li class="border-t pt-3 mt-3 flex justify-between text-gray-900"><span>Genel Toplam</span><strong>503.80 TL</strong></li>
+                </ul>
+                <a href="/Order/Received/" class="btn inline-flex items-center justify-center w-full gap-x-2 bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700 mt-4 py-3">
+                    Siparişi Onayla
+                </a>
+                <a href="/Order/Cart/" class="btn inline-flex items-center justify-center w-full gap-x-2 bg-transparent text-gray-700 border-gray-300 hover:bg-gray-700 hover:text-white hover:border-gray-700 mt-2 py-3">
+                    Sepete Geri Dön
+                </a>
+            </div>
+        </div>
+    </section>
+</main>

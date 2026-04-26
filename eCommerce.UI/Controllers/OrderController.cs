@@ -13,5 +13,10 @@ namespace eCommerce.UI.Controllers
         {
             return View();
         }
+
+        public IActionResult Shipping()
+        {
+            return View();
+        }
     }
 }

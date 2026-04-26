@@ -59,6 +59,13 @@
     color: #ffffff;
 }
 
+.fc-social-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1;
+}
+
 .fc-footer-links,
 .fc-footer-contact {
     list-style: none;
