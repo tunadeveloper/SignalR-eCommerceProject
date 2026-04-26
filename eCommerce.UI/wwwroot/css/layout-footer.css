@@ -1,0 +1,127 @@
+.fc-footer {
+    margin-top: 3rem;
+    background: #111827;
+    color: #9ca3af;
+}
+
+.fc-footer-main {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.fc-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+.fc-footer-title {
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.fc-footer-subtitle {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.fc-footer-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 320px;
+}
+
+.fc-footer-social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.fc-footer-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    border: 1px solid #374151;
+    color: #d1d5db;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.fc-footer-social a:hover {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #ffffff;
+}
+
+.fc-footer-links,
+.fc-footer-contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.fc-footer-links li + li,
+.fc-footer-contact li + li {
+    margin-top: 0.65rem;
+}
+
+.fc-footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.fc-footer-links a:hover {
+    color: #4ade80;
+}
+
+.fc-footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.fc-footer-contact i {
+    color: #4ade80;
+}
+
+.fc-footer-bottom {
+    border-top: 1px solid #1f2937;
+}
+
+.fc-footer-bottom-inner {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+}
+
+.fc-footer-bottom-inner p {
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .fc-footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .fc-footer-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .fc-footer-bottom-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

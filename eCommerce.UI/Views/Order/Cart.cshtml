@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Sepet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Sepetim</h1>
+            <p>Seçilen ürünleri gözden geçirip siparişi tamamlayabilirsiniz.</p>
+        </div>
+    </section>
+
+    <section class="container mb-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="lg:col-span-2 modern-card p-4 p-lg-5">
+                <h2 class="section-title">Sepetteki Ürünler</h2>
+                <div class="table-responsive">
+                    <table class="table table-clean align-middle">
+                        <thead>
+                            <tr>
+                                <th>Ürün</th>
+                                <th>Adet</th>
+                                <th>Birim Fiyat</th>
+                                <th>Toplam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Organik Elma (1 Kg)</td>
+                                <td>2</td>
+                                <td>89.90 TL</td>
+                                <td>179.80 TL</td>
+                            </tr>
+                            <tr>
+                                <td>Cold Brew Kahve (250 ml)</td>
+                                <td>3</td>
+                                <td>54.90 TL</td>
+                                <td>164.70 TL</td>
+                            </tr>
+                            <tr>
+                                <td>Fit Granola Bar (6 Adet)</td>
+                                <td>1</td>
+                                <td>124.50 TL</td>
+                                <td>124.50 TL</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modern-card p-4 p-lg-5 h-fit">
+                <h2 class="section-title">Sipariş Özeti</h2>
+                <ul class="list-unstyled space-y-2 text-gray-700">
+                    <li class="flex justify-between"><span>Ara Toplam</span><strong>469.00 TL</strong></li>
+                    <li class="flex justify-between"><span>Kargo</span><strong>29.90 TL</strong></li>
+                    <li class="flex justify-between"><span>İndirim</span><strong>-35.00 TL</strong></li>
+                    <li class="border-t pt-2 mt-2 flex justify-between text-gray-900"><span>Genel Toplam</span><strong>463.90 TL</strong></li>
+                </ul>
+                <a href="/Order/Received/" class="btn inline-flex items-center justify-center w-full gap-x-2 bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700 mt-4">
+                    Siparişi Tamamla
+                </a>
+            </div>
+        </div>
+    </section>
+</main>

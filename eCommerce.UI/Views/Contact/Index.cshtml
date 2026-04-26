@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "İletişim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <h1>İletişim</h1>
+            <p>Sorularınız, önerileriniz ve iş birliği talepleriniz için bize ulaşın.</p>
+        </div>
+    </section>
+
+    <section class="container mb-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="modern-card p-4 p-lg-5">
+                <h2 class="section-title">İletişim Bilgileri</h2>
+                <div class="space-y-3">
+                    <div class="contact-info-item"><i class="ti ti-map-pin"></i><span>Maslak, İstanbul / Türkiye</span></div>
+                    <div class="contact-info-item"><i class="ti ti-phone-call"></i><span>+90 (212) 000 00 00</span></div>
+                    <div class="contact-info-item"><i class="ti ti-mail"></i><span>iletisim@freshcart.com</span></div>
+                    <div class="contact-info-item"><i class="ti ti-clock-hour-4"></i><span>Hafta içi 09:00 - 18:00</span></div>
+                </div>
+            </div>
+
+            <div class="modern-card p-4 p-lg-5">
+                <h2 class="section-title">Bize Yaz</h2>
+                <form class="form-clean space-y-3">
+                    <div>
+                        <label for="name" class="form-label">Ad Soyad</label>
+                        <input id="name" type="text" placeholder="Adınızı giriniz">
+                    </div>
+                    <div>
+                        <label for="email" class="form-label">E-posta</label>
+                        <input id="email" type="email" placeholder="ornek@mail.com">
+                    </div>
+                    <div>
+                        <label for="subject" class="form-label">Konu</label>
+                        <input id="subject" type="text" placeholder="Konu başlığı">
+                    </div>
+                    <div>
+                        <label for="message" class="form-label">Mesajınız</label>
+                        <textarea id="message" rows="4" placeholder="Mesajınızı yazınız"></textarea>
+                    </div>
+                    <button type="button" class="btn inline-flex items-center gap-x-2 bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700">
+                        Mesaj Gönder
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
