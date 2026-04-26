@@ -1,11 +1,12 @@
-﻿<div class="modern-card p-4 p-lg-5 mb-4">
+﻿@using eCommerce.UI.DTOs.CategoryDTOs
+@model List<ResultCategoryDTO>
+
+<div class="modern-card p-4 p-lg-5 mb-4">
     <h2 class="section-title">Kategoriler</h2>
     <div class="flex flex-wrap gap-2">
-        <a href="#!" class="category-chip">Meyve & Sebze</a>
-        <a href="#!" class="category-chip">Atıştırmalık</a>
-        <a href="#!" class="category-chip">İçecek</a>
-        <a href="#!" class="category-chip">Temel Gida</a>
-        <a href="#!" class="category-chip">Süt ve Kahvaltılık</a>
-        <a href="#!" class="category-chip">Temizlik</a>
+        @foreach(var item in Model)
+        {
+            <a href="#!" class="category-chip">@item.CategoryName</a>
+        }
     </div>
 </div>
